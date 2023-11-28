@@ -18,7 +18,11 @@ User.init(
       autoIncrement: true,
     },
     // DO we want user to enter firstname and surname? Helps show firstname for dashboard
-    name: {
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
