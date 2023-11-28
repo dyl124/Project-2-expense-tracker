@@ -1,0 +1,14 @@
+[
+    {
+      "name": "Vendor X",
+      "email": "vendorX@example.com",
+      "phone": "111-222-3333",
+      "user_id": 1
+    },
+    {
+      "name": "Vendor Y",
+      "email": "vendorY@example.com",
+      "phone": "444-555-6666",
+      "user_id": 1
+    }
+  ]

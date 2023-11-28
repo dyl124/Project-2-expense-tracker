@@ -15,6 +15,14 @@ Client.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+      allowNull: false,
+    },
     // What other fields do we need specific to Client, if any? Do we want vendor details like address etc?
   },
   {
