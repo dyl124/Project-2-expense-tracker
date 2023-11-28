@@ -1,0 +1,24 @@
+[
+  {
+    "invoice_id": "INV001",
+    "amount": 1200.00,
+    "issue_date": "2023-01-01",
+    "due_date": "2023-01-15",
+    "payment_status": "Received",
+    "description": "Sold something",
+    "user_id": 1,
+    "type_id": 1,
+    "client_id": 1
+  },
+  {
+    "invoice_id": "INV002",
+    "amount": 800.00,
+    "issue_date": "2023-02-01",
+    "due_date": "2023-02-15",
+    "payment_status": "Pending",
+    "description": "Serviced something",
+    "user_id": 1,
+    "type_id": 2,
+    "client_id": 2
+  }
+]
