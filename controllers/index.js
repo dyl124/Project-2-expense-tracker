@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const apiRoutes = require('./api');
+const dashboard = require('./api/dashboard');
+const landingPage = require('./api/landingPage')
 
-router.use('/api', apiRoutes);
+router.use('/api', dashboard);
+router.use('/api', landingPage);
 
 module.exports = router;
