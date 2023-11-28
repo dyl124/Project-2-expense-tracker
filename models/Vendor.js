@@ -16,6 +16,14 @@ Vendor.init(
       allowNull: false,
     },
     // What other fields do we need specific to Vendor, if any? Do we want vendor details like address etc?
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+      allowNull: false,
+    },
   },
   {
     sequelize,
