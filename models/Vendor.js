@@ -16,7 +16,7 @@ Vendor.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // What other fields do we need specific to ExpenseType, if any? Do we want vendor details like address etc?
+    // What other fields do we need specific to Vendor, if any? Do we want vendor details like address etc?
   },
   {
     sequelize,
