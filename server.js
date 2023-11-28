@@ -8,7 +8,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // Add custom routes from directory, e.g. const routes = require('./controllers');
 
 const sequelize = require('./config/connection');
-const routes = require('./controllers');
+const routes = require('./controllers/api');
 // If we need any helpers, declare them here and check path
 // const helpers = require('./utils/helpers');
 
