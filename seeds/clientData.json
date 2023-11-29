@@ -1,10 +1,11 @@
 [
     {
-      "name": "Vendor X",
+      "name": "Client A",
       "user_id": 1
     },
     {
-      "name": "Vendor Y",
+      "name": "Client B",
       "user_id": 1
     }
   ]
+  
