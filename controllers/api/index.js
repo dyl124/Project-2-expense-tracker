@@ -1,9 +1,6 @@
 const router = require('express').Router();
-// const routeOne = require('./routeOne');
-// const routeTwo = require('./routeTwo');
+const userRoutes = require('./userRoutes');
 
-router.use('/landingPage', landingPage);
-
- router.use('/dashboard', dashboard);
+router.use('/users', userRoutes);
 
 module.exports = router;
