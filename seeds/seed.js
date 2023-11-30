@@ -16,23 +16,23 @@ const seedDatabase = async () => {
   // Seed User data
   await User.bulkCreate(userData);
 
-  // Seed Income data
-  await Income.bulkCreate(incomeData);
-
-    // Seed IncomeType data
+  // Seed IncomeType data
   await IncomeType.bulkCreate(incomeTypeData);
 
   // Seed Client data
   await Client.bulkCreate(clientData);
 
-    // Seed Expense data
-  await Expense.bulkCreate(expenseData);
+  // Seed Income data
+  await Income.bulkCreate(incomeData);
 
   // Seed ExpenseType data
   await ExpenseType.bulkCreate(expenseTypeData);
 
   // Seed Vendor data
   await Vendor.bulkCreate(vendorData);
+
+  // Seed Expense data
+  await Expense.bulkCreate(expenseData);
 
   process.exit(0);
 };
