@@ -1,9 +1,6 @@
 const router = require('express').Router();
-const landingPage = require('./landingPage');
-const dashboard = require('./dashboard');
+const userRoutes = require('./userRoutes');
 
-router.use('/landingPage', landingPage);
-
- router.use('/dashboard', dashboard);
+router.use('/users', userRoutes);
 
 module.exports = router;
