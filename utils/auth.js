@@ -1,4 +1,4 @@
-const userAuth = (req, res, next) => {
+const withAuth = (req, res, next) => {
   // If the user is not logged in, redirect the user to the login page
   if (!req.session.loggedIn) {
     res.redirect('/login'); // Confirm/change url for redirect
@@ -8,4 +8,4 @@ const userAuth = (req, res, next) => {
   }
 };
 
-module.exports = userAuth;
+module.exports = withAuth;
