@@ -1,8 +1,9 @@
 const router = require('express').Router();
-// const routeOne = require('./routeOne');
-// const routeTwo = require('./routeTwo');
 
-// router.use('/one', routeOne);
-// router.use('/two', routeTwo);
+const incomeRoutes = require('./income-routes');
+const expenseRoutes = require('./expense-routes');
+
+router.use('/income', incomeRoutes);
+router.use('/expense', expenseRoutes);
 
 module.exports = router;
