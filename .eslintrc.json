@@ -8,6 +8,7 @@
     "es2017": true
   },
   "rules": {
+    "format_on_save": true,
     "no-undef-init": "error",
     "no-duplicate-case": "error",
     "no-empty": "error",
