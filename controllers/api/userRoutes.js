@@ -43,5 +43,9 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+router.post('/register', async (req,res) =>
+{
+createNewUser = await firstName, lastName, email, password
+});
 
 module.exports = router;
