@@ -1,11 +1,17 @@
 // Need to test implementation of this API - could possibly serve all GET requests for income data, regardless of how much/what data is requested 
 // (e.g. all income data, or income data for a specific invoice, or income data for a specific invoice and client, etc.)
+// This currently includes the INCOME TYPE and CLIENT routes, which may need to be moved to their own files later
 
 const router = require('express').Router();
 const { User, Income, IncomeType, Client } = require('../../models');
 const withAuth = require('../../utils/auth');
 // Import the sequelize object and the Op module from sequelize to allow for advanced operators like BETWEEN
 const { Op } = require('sequelize');
+
+
+
+// ________________________________________INCOME ROUTES____________________________________________
+// i.e. /api/income
 
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -154,6 +160,177 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(200).json({ message: 'Income entry deleted successfully' });
   } catch (err) {
     console.error('Error deleting income entry:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+// ________________________________________INCOME TYPE ROUTES____________________________________________
+// i.e. /api/income/type
+// May wish to make detailed GET routes for income types later, with params similar to the income GET route above
+
+router.get('/type', withAuth, async (req, res) => {
+  try {
+    // Use req.session.user_id to get the currently logged-in user's ID
+    const userId = req.session.user_id;
+
+    // Fetch all income types for the user
+    const incomeTypes = await IncomeType.findAll({
+      where: {
+        user_id: userId,
+      },
+    });
+
+    // Send a success response
+    res.status(200).json(incomeTypes);
+  } catch (err) {
+    console.error('Error fetching income types:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.post('/type', withAuth, async (req, res) => {
+  try {
+    // Use req.session.user_id to get the currently logged-in user's ID
+    const userId = req.session.user_id;
+
+    // Add the user_id to the request body
+    req.body.user_id = userId;
+
+    // Create a new income type record
+    const newIncomeType = await IncomeType.create(req.body);
+
+    // Send a success-created response
+    res.status(201).json(newIncomeType);
+  } catch (err) {
+    console.error('Error creating new income type:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// PUT route to update an income type
+router.put('/type/:id', withAuth, async (req, res) => {
+  try {
+    const incomeTypeId = req.params.id;
+    const userId = req.session.user_id;
+    const updatedIncomeType = await IncomeType.update(req.body, {
+      where: {
+        id: incomeTypeId,
+        user_id: userId,
+      },
+    });
+    if (!updatedIncomeType[0]) {
+      return res.status(404).json({ message: 'No income type found with this id for this user' });
+    }
+    res.status(200).json({ message: 'Income type updated successfully' });
+  } catch (err) {
+    console.error('Error updating income type:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// DELETE route to delete an income type
+router.delete('/type/:id', withAuth, async (req, res) => {
+  try {
+    const incomeTypeId = req.params.id;
+    const userId = req.session.user_id;
+    const deletedIncomeType = await IncomeType.destroy({
+      where: {
+        id: incomeTypeId,
+        user_id: userId,
+      },
+    });
+    if (!deletedIncomeType) {
+      return res.status(404).json({ message: 'No income type found with this id for this user' });
+    }
+    res.status(200).json({ message: 'Income type deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting income type:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+// ________________________________________CLIENT ROUTES____________________________________________
+// i.e. /api/income/client
+// may wish to make detailed GET routes for clients later, with params similar to the income GET route above
+
+router.get('/client', withAuth, async (req, res) => {
+  try {
+    // Use req.session.user_id to get the currently logged-in user's ID
+    const userId = req.session.user_id;
+
+    // Fetch all clients for the user
+    const clients = await Client.findAll({
+      where: {
+        user_id: userId,
+      },
+    });
+
+    // Send a success response
+    res.status(200).json(clients);
+  } catch (err) {
+    console.error('Error fetching clients:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.post('/client', withAuth, async (req, res) => {
+  try {
+    // Use req.session.user_id to get the currently logged-in user's ID
+    const userId = req.session.user_id;
+
+    // Add the user_id to the request body
+    req.body.user_id = userId;
+
+    // Create a new client record
+    const newClient = await Client.create(req.body);
+
+    // Send a success-created response
+    res.status(201).json(newClient);
+  } catch (err) {
+    console.error('Error creating new client:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.put('/client/:id', withAuth, async (req, res) => {
+  try {
+    const clientId = req.params.id;
+    const userId = req.session.user_id;
+    const updatedClient = await Client.update(req.body, {
+      where: {
+        id: clientId,
+        user_id: userId,
+      },
+    });
+    if (!updatedClient[0]) {
+      return res.status(404).json({ message: 'No client found with this id for this user' });
+    }
+    res.status(200).json({ message: 'Client updated successfully' });
+  } catch (err) {
+    console.error('Error updating client:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.delete('/client/:id', withAuth, async (req, res) => {
+  try {
+    const clientId = req.params.id;
+    const userId = req.session.user_id;
+    const deletedClient = await Client.destroy({
+      where: {
+        id: clientId,
+        user_id: userId,
+      },
+    });
+    if (!deletedClient) {
+      return res.status(404).json({ message: 'No client found with this id for this user' });
+    }
+    res.status(200).json({ message: 'Client deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting client:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
