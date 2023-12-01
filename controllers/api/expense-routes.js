@@ -1,3 +1,5 @@
+// Finalise the income-routes.js first, then copy it to expense-routes.js and make the appropriate changes.
+
 const router = require('express').Router();
 const { User, Expense, ExpenseType, Vendor } = require('../../models');
 const withAuth = require('../../utils/auth');
