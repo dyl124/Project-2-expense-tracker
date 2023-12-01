@@ -20,6 +20,7 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+// Is this the right route? Maybe we should redirect /login to /user/login?
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');

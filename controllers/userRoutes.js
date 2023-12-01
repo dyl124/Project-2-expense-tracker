@@ -1,6 +1,6 @@
 // THis is my version with changes from Dylan's - May need to fix conflicts later
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User } = require('../models');
 
 // Render the login page - separate from the login form submission (this should be a get request)
 // TODO - serve other pages (register/sign-up, etc.)
