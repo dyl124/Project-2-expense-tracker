@@ -3,9 +3,7 @@ const { User } = require('../models');
 
 // Render the login page - separate from the login form submission (this should be a get request)
 // TODO - serve other pages (register/sign-up, etc.)
-router.get('/login', (req, res) => {
-  res.render('login');
-});
+
 ///WORKING http://localhost:3001/user/login
 // Handle login form submissions as a post request
 router.post('/login', async (req, res) => {
