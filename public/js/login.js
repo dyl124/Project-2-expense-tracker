@@ -14,7 +14,7 @@ const loginFormHandler = async (event) => {
       });
 
       if (response.ok) {
-        //document.location.replace('/');
+        document.location.replace('/');
         console.log('successful');
       } else {
         alert('Failed to log in');
@@ -26,4 +26,4 @@ const loginFormHandler = async (event) => {
   }
 };
 
-document.querySelector('#loginBtn').addEventListener('click', loginFormHandler);
+document.querySelector('#login').addEventListener('submit', loginFormHandler);

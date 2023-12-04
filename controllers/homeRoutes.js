@@ -4,15 +4,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
-    });
-
-    const users = userData.map((project) => project.get({ plain: true }));
-
-    res.render('homepage', {
-      users,
+    res.render('dashboard', {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -20,18 +12,32 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-// Is this the right route? Maybe we should redirect /login to /user/login?
+// Redirect to homepage if user is already logged in
 router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
+  try {
+    if (req.session.logged_in) {
+      res.redirect('/');
+    } else {
+      res.render('login', { logged_in: req.session.logged_in });
+    }
+  } catch (err) {
+    console.error(err); // Log error
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-  res.render('login');
 });
 
-///WORKING http://localhost:3001/register
+// Redirect to homepage if user is already logged in
 router.get('/register', async (req, res) => {
-  res.render('register');
+  try {
+    if (req.session.logged_in) {
+      res.redirect('/');
+    } else {
+      res.render('register', { logged_in: req.session.logged_in });
+    }
+  } catch (err) {
+    console.error(err); // Log error
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 module.exports = router;
