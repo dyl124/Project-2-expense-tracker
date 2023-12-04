@@ -25,9 +25,13 @@ router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');
     return;
-  
   }
   res.render('login');
+});
+
+///WORKING http://localhost:3001/register
+router.get('/register', async (req, res) => {
+  res.render('register');
 });
 
 module.exports = router;
