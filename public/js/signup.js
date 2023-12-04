@@ -14,7 +14,7 @@ const signupFormHandler = async (event) => {
       }
   
       try {
-        const response = await fetch('/api/users/signup', {
+        const response = await fetch('/users/signup', {
           method: 'POST',
           body: JSON.stringify({ firstName, lastName, email, password }),
           headers: { 'Content-Type': 'application/json' },
@@ -34,4 +34,3 @@ const signupFormHandler = async (event) => {
   };
   
   document.querySelector('#signup').addEventListener('submit', signupFormHandler);
-  
