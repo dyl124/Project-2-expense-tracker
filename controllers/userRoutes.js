@@ -1,4 +1,3 @@
-// THis is my version with changes from Dylan's - May need to fix conflicts later
 const router = require('express').Router();
 const { User } = require('../models');
 
@@ -7,7 +6,7 @@ const { User } = require('../models');
 router.get('/login', (req, res) => {
   res.render('login');
 });
-
+///WORKING http://localhost:3001/user/login
 // Handle login form submissions as a post request
 router.post('/login', async (req, res) => {
   try {
@@ -18,6 +17,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    // Check the password using the validPassword method on the user instance
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -37,6 +37,14 @@ router.post('/login', async (req, res) => {
   }
 });
 
+///WORKING
+
+///WORKING http://localhost:3001/user/register
+router.get('/register', async (req, res) => {
+res.render('signup')});
+
+////WORKING
+
 router.post('/register', async (req, res) => {
   try {
     const newUser = await User.create({
@@ -51,5 +59,6 @@ router.post('/register', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
+///WORKINGGG
 module.exports = router;
+
