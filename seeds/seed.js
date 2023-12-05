@@ -1,5 +1,13 @@
 const sequelize = require('../config/connection');
-const { User, Income, IncomeType, Client, Expense, ExpenseType, Vendor } = require('../models');
+const {
+  User,
+  Income,
+  IncomeType,
+  Client,
+  Expense,
+  ExpenseType,
+  Vendor,
+} = require('../models');
 
 const userData = require('./userData.json');
 const incomeData = require('./incomeData.json');
@@ -8,7 +16,6 @@ const clientData = require('./clientData.json');
 const expenseData = require('./expenseData.json');
 const expenseTypeData = require('./expenseTypeData.json');
 const vendorData = require('./vendorData.json');
-
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
