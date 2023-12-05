@@ -1,45 +1,7 @@
 <h2>Dashboard</h2>
 <p id="currentDate"></p>
-<form id="filterForm">
-  <label>
-    <input type="checkbox" name="useIssueDateRange"> Use Issue Date Range
-  </label>
-  <label>
-    <input type="checkbox" name="useDueDateRange"> Use Due Date Range
-  </label>
-  <label>
-    <label for="incomeType">Income Type:</label>
-    <select id="incomeType" name="incomeType">
-      <option value="1">Product Sales</option>
-      <option value="2">Service Fees</option>
-    </select>
-  </label>
-  <label>
-    <label for="client">Client:</label>
-    <select id="client" name="client">
-      <option value="1">Client A</option>
-      <option value="2">Client B</option>
-    </select>
-  </label>
-  <label>
-    <label for="paymentStatus">Payment Status:</label>
-    <select id="paymentStatus" name="paymentStatus">
-      <option value="1">Paid</option>
-      <option value="2">Pending</option>
-      <option value="3">Overdue</option>
-    </select>
-  </label>
-  <label>
-    <label for="invoice">Invoice:</label>
-    <select id="invoice" name="invoice">
-      <option value="1">INV001</option>
-      <option value="2">INV002</option>
-      <option value="3">INV003</option>
-      <option value="4">INV004</option>
-    </select>
-  </label>
-  <button type="submit">Submit</button>
-</form>
+<h2>Dashboard</h2>
+<p id="currentDate"></p>
 
 
 
@@ -63,7 +25,9 @@
   {{/unless}}
 {{/unless}}
 
-
+<div>
+  {{> filterForm}}
+</div>
 <div>
 {{> incomeTable}}
 </div>

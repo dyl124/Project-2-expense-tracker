@@ -1,0 +1,38 @@
+<form id="filterForm">
+  <label>
+    <input type="checkbox" name="useIssueDateRange"> Use Issue Date Range
+  </label>
+  <label>
+    <input type="checkbox" name="useDueDateRange"> Use Due Date Range
+  </label>
+  <label>
+    <label for="incomeType">Income Type:</label>
+    <select id="incomeType" name="incomeType">
+      <option value="1">Product Sales</option>
+      <option value="2">Service Fees</option>
+    </select>
+  </label>
+  <div class="search-container">
+    <label for="client">Client:</label>
+    <div class="search-dropdown">
+      <input type="text" id="clientSearch" name="clientSearch" placeholder="Search Client" list="clientSuggestions">
+      <datalist id="clientSuggestions">
+        <option value="Client A">
+        <option value="Client B">
+      </datalist>
+      <select id="client" name="client">
+        <option value="1">Client A</option>
+        <option value="2">Client B</option>
+      </select>
+    </div>
+  </div>
+  <label>
+    <label for="paymentStatus">Payment Status:</label>
+    <select id="paymentStatus" name="paymentStatus">
+      <option value="1">Yes</option>
+      <option value="2">No</option>
+    </select>
+  </label>
+  
+  <button type="submit">Submit</button>
+</form>
