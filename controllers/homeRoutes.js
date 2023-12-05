@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Income, IncomeType, Client, Expense } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Fetch the all income data from API for table in incomeTable partial
     const incomeData = await Income.findAll({
@@ -31,27 +31,13 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-// Redirect to homepage if user is already logged in
-router.get('/login', (req, res) => {
+// Redirect to dashboard if user is already logged in
+router.get('/', (req, res) => {
   try {
     if (req.session.logged_in) {
-      res.redirect('/');
+      res.redirect('/dashboard');
     } else {
-      res.render('login', { logged_in: req.session.logged_in });
-    }
-  } catch (err) {
-    console.error(err); // Log error
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// Redirect to homepage if user is already logged in
-router.get('/register', async (req, res) => {
-  try {
-    if (req.session.logged_in) {
-      res.redirect('/');
-    } else {
-      res.render('register', { logged_in: req.session.logged_in });
+      res.render('homepage', { logged_in: req.session.logged_in });
     }
   } catch (err) {
     console.error(err); // Log error
