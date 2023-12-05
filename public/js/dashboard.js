@@ -88,6 +88,16 @@ document
 
       tbody.appendChild(row);
     });
+
+    // Reset the total income to 0
+    let sumAmount = 0;
+
+    // Loop through the income data and add up all the amounts
+    data.incomeData.forEach((income) => {
+      sumAmount += parseFloat(income.amount);
+    });
+    // Render the sumAmount to the table footer as a number with 2 decimal places
+    document.querySelector('#sumAmount').textContent = sumAmount.toFixed(2);
   });
 
 document
