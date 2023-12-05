@@ -1,4 +1,4 @@
-// Need to test implementation of this API - could possibly serve all GET requests for income data, regardless of how much/what data is requested 
+// Need to test implementation of this API - could possibly serve all GET requests for income data, regardless of how much/what data is requested
 // (e.g. all income data, or income data for a specific invoice, or income data for a specific invoice and client, etc.)
 // This currently includes the INCOME TYPE and CLIENT routes, which may need to be moved to their own files later
 
@@ -7,8 +7,6 @@ const { User, Income, IncomeType, Client } = require('../../models');
 const withAuth = require('../../utils/auth');
 // Import the sequelize object and the Op module from sequelize to allow for advanced operators like BETWEEN
 const { Op } = require('sequelize');
-
-
 
 // ________________________________________INCOME ROUTES____________________________________________
 // i.e. /api/income
@@ -30,48 +28,62 @@ router.get('/', withAuth, async (req, res) => {
       user_id: userId,
     };
 
-    // If invoice_id is provided, add it to the where clause
+    // If invoice_id is provided, add it to the where clause - maybe better for a search feature
+    // EG: http://localhost:3001/api/income?invoice_id=INV002
     if (req.query.invoice_id) {
       whereClause.invoice_id = req.query.invoice_id;
     }
 
     // If issue_date range is provided, add it to the where clause
-    if (req.query.startIssueDate && req.query.endIssueDate) {
+    // EG: http://localhost:3001/api/income?start_issue_date=2023-01-01&end_issue_date=2023-2-10
+    if (req.query.start_issue_date && req.query.end_issue_date) {
       whereClause.issue_date = {
-        [Op.between]: [new Date(req.query.startIssueDate), new Date(req.query.endIssueDate)],
+        [Op.between]: [
+          new Date(req.query.start_issue_date),
+          new Date(req.query.end_issue_date),
+        ],
       };
     }
 
     // If due_date range is provided, add it to the where clause
-    if (req.query.startDueDate && req.query.endDueDate) {
+    // EG: http://localhost:3001/api/income?start_due_date=2023-01-15&end_due_date=2023-02-15
+    if (req.query.start_due_date && req.query.end_due_date) {
       whereClause.due_date = {
-        [Op.between]: [new Date(req.query.startDueDate), new Date(req.query.endDueDate)],
+        [Op.between]: [
+          new Date(req.query.start_due_date),
+          new Date(req.query.end_due_date),
+        ],
       };
     }
 
     // If income type is provided, add it to the where clause
-    if (req.query.incomeType) {
-      whereClause.incomeType = req.query.incomeType;
+    // Not sure yet how we want to handle these - for now, type_id as income_type to the where clause
+    // EG: http://localhost:3001/api/income?income_type=1 - returns all income entries with type_id = 1
+    if (req.query.income_type) {
+      whereClause.type_id = req.query.income_type;
     }
 
     // If client is provided, add it to the where clause
+    // Not sure yet how we want to handle these - for now, client_id as client to the where clause
+    // EG: http://localhost:3001/api/income?client=1 - returns all income entries with client_id = 1
     if (req.query.client) {
-      whereClause.client = req.query.client;
+      whereClause.client_id = req.query.client;
     }
 
     // If payment status is provided, add it to the where clause
-    if (req.query.paymentStatus) {
-      whereClause.paymentStatus = req.query.paymentStatus;
+    // EG: http://localhost:3001/api/income?payment_status=received
+    if (req.query.payment_status) {
+      whereClause.payment_status = req.query.payment_status;
     }
 
     const incomeData = await Income.findAll({
       where: whereClause,
-      include: [
-        { model: IncomeType },
-        { model: Client },
-      ],
-      // Used to sort by results. If sortBy is provided, sort by that ccolumn in the order provided (if not provided, default to ASC); if no sortBy is provided, don't sort
-      order: req.query.sortBy ? [[req.query.sortBy, req.query.order || 'ASC']] : undefined,
+      include: [{ model: IncomeType }, { model: Client }],
+      // Used to sort by results. If sort is provided, sort by that column in the order provided (if not provided, default to ASC); if no sort is provided, don't sort
+      // Note options for order are 'ASC' and 'DESC' (case insensitive)
+      order: req.query.sort
+        ? [[req.query.sort, req.query.order || 'ASC']]
+        : undefined,
     });
 
     res.status(200).json({
@@ -123,7 +135,9 @@ router.put('/:id', withAuth, async (req, res) => {
 
     // If no income entry was found with the provided ID and user_id, send a 404 response
     if (!updatedIncome[0]) {
-      return res.status(404).json({ message: 'No income entry found with this id for this user' });
+      return res
+        .status(404)
+        .json({ message: 'No income entry found with this id for this user' });
     }
 
     // Send a success response
@@ -153,7 +167,9 @@ router.delete('/:id', withAuth, async (req, res) => {
 
     // If no income entry was found with the provided ID and user_id, send a 404 response
     if (!deletedIncome) {
-      return res.status(404).json({ message: 'No income entry found with this id for this user' });
+      return res
+        .status(404)
+        .json({ message: 'No income entry found with this id for this user' });
     }
 
     // Send a success response
@@ -163,7 +179,6 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 
 // ________________________________________INCOME TYPE ROUTES____________________________________________
 // i.e. /api/income/type
@@ -220,7 +235,9 @@ router.put('/type/:id', withAuth, async (req, res) => {
       },
     });
     if (!updatedIncomeType[0]) {
-      return res.status(404).json({ message: 'No income type found with this id for this user' });
+      return res
+        .status(404)
+        .json({ message: 'No income type found with this id for this user' });
     }
     res.status(200).json({ message: 'Income type updated successfully' });
   } catch (err) {
@@ -241,7 +258,9 @@ router.delete('/type/:id', withAuth, async (req, res) => {
       },
     });
     if (!deletedIncomeType) {
-      return res.status(404).json({ message: 'No income type found with this id for this user' });
+      return res
+        .status(404)
+        .json({ message: 'No income type found with this id for this user' });
     }
     res.status(200).json({ message: 'Income type deleted successfully' });
   } catch (err) {
@@ -249,8 +268,6 @@ router.delete('/type/:id', withAuth, async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
-
 
 // ________________________________________CLIENT ROUTES____________________________________________
 // i.e. /api/income/client
@@ -306,7 +323,9 @@ router.put('/client/:id', withAuth, async (req, res) => {
       },
     });
     if (!updatedClient[0]) {
-      return res.status(404).json({ message: 'No client found with this id for this user' });
+      return res
+        .status(404)
+        .json({ message: 'No client found with this id for this user' });
     }
     res.status(200).json({ message: 'Client updated successfully' });
   } catch (err) {
@@ -326,7 +345,9 @@ router.delete('/client/:id', withAuth, async (req, res) => {
       },
     });
     if (!deletedClient) {
-      return res.status(404).json({ message: 'No client found with this id for this user' });
+      return res
+        .status(404)
+        .json({ message: 'No client found with this id for this user' });
     }
     res.status(200).json({ message: 'Client deleted successfully' });
   } catch (err) {
