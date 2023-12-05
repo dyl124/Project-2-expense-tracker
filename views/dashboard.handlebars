@@ -1,29 +1,19 @@
 <h2>Dashboard</h2>
+{{!-- Need to get the following two lines working --}}
+<p>Welcome, {{user.firstName}}!</p>
 <p id="currentDate"></p>
-<h2>Dashboard</h2>
-<p id="currentDate"></p>
 
-
-
-{{#if paymentsDueSoon}}
-  <div class="alert alert-warning">
-    <p>You have {{paymentsDueSoon}} payments due soon. <a href="/payments">Click to view.</a></p>
+{{!-- TODO: Add a means to close the modal, add a click-on modal that automatically filters by overdue on the income-table --}}
+{{#if hasOutstandingIncomes}}
+<div class="modal">
+  <div class="modal-content">
+    <h2>Outstanding Incomes</h2>
+    <p>You have {{outstandingIncomesCount}} outstanding income payments. Please review them below.</p>
   </div>
+</div>
 {{/if}}
 
-{{#if paymentsOverdue}}
-  <div class="alert alert-danger">
-    <p>You have {{paymentsOverdue}} payments overdue. <a href="/payments">Click to view.</a></p>
-  </div>
-{{/if}}
-
-{{#unless paymentsDueSoon}}
-  {{#unless paymentsOverdue}}
-    <div class="alert alert-success">
-      <p>You have no payments due soon or overdue.</p>
-    </div>
-  {{/unless}}
-{{/unless}}
+{{!-- Need to duplicate all for expenses --}}
 
 <div>
   {{> filterForm}}
