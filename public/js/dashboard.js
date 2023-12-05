@@ -1,4 +1,3 @@
-
 // change listens for any change in the form, eg when a user selects a new option from the dropdown
 // maybe change code to a button that says "filter" and then it will fetch the data from the API once clicked
 document
@@ -108,34 +107,36 @@ document
   });
 
 // JavaScript code to update the current date
-document.getElementById('currentDate').innerText = 'Today is ' + getCurrentDate();
+document.getElementById('currentDate').innerText =
+  'Today is ' + getCurrentDate();
 
 function getCurrentDate() {
-    const now = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return now.toLocaleDateString('en-US', options);
+  const now = new Date();
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  return now.toLocaleDateString('en-US', options);
 }
 
-
 document.addEventListener('DOMContentLoaded', function () {
-    function filterDropdown(searchInput, dropdown) {
-      var searchTerm = searchInput.value.toLowerCase();
-      var options = dropdown.options;
+  function filterDropdown(searchInput, dropdown) {
+    var searchTerm = searchInput.value.toLowerCase();
+    var options = dropdown.options;
 
-      for (var i = 0; i < options.length; i++) {
-        var optionText = options[i].text.toLowerCase();
-        options[i].style.display = optionText.includes(searchTerm) ? '' : 'none';
-      }
+    for (var i = 0; i < options.length; i++) {
+      var optionText = options[i].text.toLowerCase();
+      options[i].style.display = optionText.includes(searchTerm) ? '' : 'none';
     }
+  }
 
-    // Client dropdown search functionality
-    var clientSearch = document.getElementById("clientSearch");
-    var clientDropdown = document.getElementById("client");
+  // Client dropdown search functionality
+  var clientSearch = document.getElementById('clientSearch');
+  var clientDropdown = document.getElementById('client');
 
-    clientSearch.addEventListener("input", function () {
-      filterDropdown(clientSearch, clientDropdown);
-    });
-
-   
+  clientSearch.addEventListener('input', function () {
+    filterDropdown(clientSearch, clientDropdown);
   });
-
+});

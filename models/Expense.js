@@ -28,7 +28,7 @@ Expense.init(
       allowNull: false,
     },
     payment_status: {
-      type: DataTypes.ENUM('Pending', 'Payed', 'Overdue'),
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     description: {
