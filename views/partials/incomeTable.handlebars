@@ -1,0 +1,73 @@
+<form id='income-filter-form'>
+  <label>
+    <input type='checkbox' name='useIssueDateRange' />
+    Use Issue Date Range
+  </label>
+  <label>
+    <input type='checkbox' name='useDueDateRange' />
+    Use Due Date Range
+  </label>
+  <label>
+    <label for='clientCheckbox'>Client:</label>
+    <select id='clientDropdown' name='client'>
+      <option value='1'>Client A</option>
+      <option value='2'>Client B</option>
+    </select>
+  </label>
+  <label>
+    <label for='paymentStatus'>Payment Status:</label>
+    <select id='paymentStatus' name='paymentStatus'>
+      <option value='received'>Recieved</option>
+      <option value='pending'>Pending</option>
+      <option value='overdue'>Overdue</option>
+    </select>
+  </label>
+  <label>
+    <label for='invoiceId'>Invoice:</label>
+    <select id='invoiceId' name='invoiceId'>
+      <option value='INV001'>INV001</option>
+      <option value='INV002'>INV002</option>
+      <option value='INV003'>INV003</option>
+      <option value='INV004'>INV004</option>
+    </select>
+  </label>
+  <button id='submit'>Submit </button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Invoice ID</th>
+      <th>Issue Date</th>
+      <th>Client</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Due Date</th>
+      <th>Payment Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each incomes}}
+      <tr>
+        <td>{{this.invoice_id}}</td>
+        <td>{{this.issue_date}}</td>
+        <td>{{this.client.name}}</td>
+        <td>{{this.income_type.name}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.amount}}</td>
+        <td>{{this.due_date}}</td>
+        <td>{{this.payment_status}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan='5'>Total:</td>
+      <td id='sumAmount'>{{sumAmount}}</td>
+      <td colspan='2'></td>
+    </tr>
+  </tfoot>
+</table>
+
+<button id='add-income-button'>Add An Income</button>
