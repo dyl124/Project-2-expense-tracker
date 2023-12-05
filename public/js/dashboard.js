@@ -41,26 +41,50 @@ document
       method: 'GET',
       // Add any necessary headers and query parameters here
     });
-    const incomes = await response.json();
-    console.log(incomes);
+    const data = await response.json();
+    console.log(data);
     // Get the table body
     const tbody = document.querySelector('table tbody');
 
     // Clear the existing table data
-
     tbody.innerHTML = '';
 
-    // Loop over the fetched data and create new rows for each item
-    incomes.forEach((income) => {
+    data.incomeData.forEach((income) => {
       const row = document.createElement('tr');
 
       // Create a new cell for each property of the item
-      // TODO need to specify which properties to display
-      for (let key in income) {
-        const cell = document.createElement('td');
-        cell.textContent = item[key];
-        row.appendChild(cell);
-      }
+      // Adjusted to handle nested properties
+      const cellInvoiceId = document.createElement('td');
+      cellInvoiceId.textContent = income.invoice_id;
+      row.appendChild(cellInvoiceId);
+
+      const cellIssueDate = document.createElement('td');
+      cellIssueDate.textContent = income.issue_date;
+      row.appendChild(cellIssueDate);
+
+      const cellClient = document.createElement('td');
+      cellClient.textContent = income.client.name; // Assuming client is an object with a name property
+      row.appendChild(cellClient);
+
+      const cellIncomeType = document.createElement('td');
+      cellIncomeType.textContent = income.income_type.name; // Assuming income_type is an object with a name property
+      row.appendChild(cellIncomeType);
+
+      const cellDescription = document.createElement('td');
+      cellDescription.textContent = income.description;
+      row.appendChild(cellDescription);
+
+      const cellAmount = document.createElement('td');
+      cellAmount.textContent = income.amount;
+      row.appendChild(cellAmount);
+
+      const cellDueDate = document.createElement('td');
+      cellDueDate.textContent = income.due_date;
+      row.appendChild(cellDueDate);
+
+      const cellPaymentStatus = document.createElement('td');
+      cellPaymentStatus.textContent = income.payment_status;
+      row.appendChild(cellPaymentStatus);
 
       tbody.appendChild(row);
     });
