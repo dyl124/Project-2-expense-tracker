@@ -1,10 +1,8 @@
-// Finalise the income-routes.js first, then copy it to expense-routes.js and make the appropriate changes.
-
 const router = require('express').Router();
-const { User, Expense, ExpenseType, Vendor } = require('../../models');
+const { User, Expense, ExpenseType, Vendor, Income, IncomeType } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Use req.session.user_id to get the currently logged-in user's ID
     const userId = req.session.user_id;
@@ -16,21 +14,19 @@ router.get('/', withAuth, async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Fetch Expense data along with associated models - LATER WILL SELECT WHAT I WANT
-    const expenseData = await Expense.findAll({
-      where: {
-        user_id: userId,
-      },
+    const whereClause = { userId: user.id }; // Adjust this based on your model structure
+
+    const allRelatedUserData = await Income.findAll({
+      where: whereClause,
       include: [
+        { model: Expense },
+        { model: IncomeType },
         { model: ExpenseType },
         { model: Vendor },
       ],
     });
 
-    res.status(200).json({
-      user: user.toJSON(),
-      expenseData: expenseData.map((expense) => expense.toJSON()),
-    });
+    res.status(200).json({ data: allRelatedUserData, message: 'Successful' });
   } catch (err) {
     console.error('Error fetching data:', err);
     res.status(500).json({ message: 'Internal server error' });
