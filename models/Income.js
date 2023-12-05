@@ -28,7 +28,7 @@ Income.init(
       allowNull: false,
     },
     payment_status: {
-      type: DataTypes.ENUM('Pending', 'Received', 'Overdue'), // mirroring Expense.js
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     description: {
