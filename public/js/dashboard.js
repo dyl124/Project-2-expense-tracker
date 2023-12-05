@@ -117,3 +117,25 @@ function getCurrentDate() {
 }
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    function filterDropdown(searchInput, dropdown) {
+      var searchTerm = searchInput.value.toLowerCase();
+      var options = dropdown.options;
+
+      for (var i = 0; i < options.length; i++) {
+        var optionText = options[i].text.toLowerCase();
+        options[i].style.display = optionText.includes(searchTerm) ? '' : 'none';
+      }
+    }
+
+    // Client dropdown search functionality
+    var clientSearch = document.getElementById("clientSearch");
+    var clientDropdown = document.getElementById("client");
+
+    clientSearch.addEventListener("input", function () {
+      filterDropdown(clientSearch, clientDropdown);
+    });
+
+   
+  });
+
