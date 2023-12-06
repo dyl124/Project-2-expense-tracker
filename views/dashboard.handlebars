@@ -32,6 +32,14 @@
 <div>
   {{> expenseTable}}
 </div>
+
+<div>
+  {{> chart}}
+</div>
+
+{{!-- Import script for chart --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{!-- Following script is used by both FilterForm and both Table. Ideally in the future, these would be segregrated. The new addTransactionModal will include it's own script. --}}
 <script src="/js/dashboard.js"></script>
 
 

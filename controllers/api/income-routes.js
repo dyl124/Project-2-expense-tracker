@@ -356,4 +356,26 @@ router.delete('/client/:id', withAuth, async (req, res) => {
   }
 });
 
+// GET TOTAL for chart and DOM loading - eventually could do with a middleware
+// CUrrently being duplicated in homeRoutes.js /dashboard
+router.get('/total', withAuth, async (req, res) => {
+  try {
+    const userId = req.session.user_id;
+    const incomeData = await Income.findAll({
+      where: {
+        user_id: userId,
+      },
+    });
+    const incomes = incomeData.map((income) => income.get({ plain: true }));
+    let totalIncome = 0;
+    incomes.forEach((income) => {
+      // for each income object, add the amount to the incomeSumAmount variable and return as a float with 2 decimal places
+      totalIncome += parseFloat(income.amount);
+    });
+    res.json(totalIncome);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
