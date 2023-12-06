@@ -282,4 +282,26 @@ router.delete('/vendor/:id', withAuth, async (req, res) => {
   }
 });
 
+// GET TOTAL for chart and DOM loading - eventually could do with a middleware
+// CUrrently being duplicated in homeRoutes.js /dashboard
+router.get('/total', withAuth, async (req, res) => {
+  try {
+    const userId = req.session.user_id;
+    const expenseData = await Expense.findAll({
+      where: {
+        user_id: userId,
+      },
+    });
+    const expenses = expenseData.map((expense) => expense.get({ plain: true }));
+    let totalExpense = 0;
+    expenses.forEach((expense) => {
+      // for each expense object, add the amount to the totalExpense variable and return as a float with 2 decimal places
+      totalExpense += parseFloat(expense.amount);
+    });
+    res.json(totalExpense);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
