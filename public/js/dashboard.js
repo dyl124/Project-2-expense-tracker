@@ -1,7 +1,8 @@
 // TODO in future: refactor by seperating functions for income and expenses into seperate files
-//GLOBAL VARIABLES
+//GLOBAL VARIABLES - for chart on page load and update on table filtering
 let totalIncome = 0;
 let totalExpense = 0;
+let chart;
 
 //______________________EVENT LISTENER FOR DOM LOAD - DATE AND INCOME/EXPENSE DROPDOWNS_____________________
 document.addEventListener('DOMContentLoaded', async function () {
@@ -83,8 +84,34 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
   console.log('Total Income:', totalIncome);
   console.log('Total Expense:', totalExpense);
-  // Update the chart on page load.
-  updateChart();
+
+  // INITIALISE THE CHART ON PAGE LOAD - EDIT CHART FORMAT HERE
+  const ctx = document.getElementById('chart').getContext('2d');
+  chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Income', 'Expense'],
+      datasets: [
+        {
+          label: 'Total Amount',
+          data: [totalIncome, totalExpense],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+          ],
+          borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 });
 
 //______________________EVENT LISTENER FOR THE INCOME/EXPENSE FILTER FORMs_____________________
@@ -194,7 +221,7 @@ async function updateIncomeTable() {
     tbody.appendChild(row);
   });
   // Reset the total income to 0
-  let totalIncome = 0;
+  totalIncome = 0;
 
   // Loop through the income data and add up all the amounts
   data.incomeData.forEach((income) => {
@@ -295,7 +322,7 @@ async function updateExpenseTable() {
   });
 
   // Reset the total expense to 0
-  let totalExpense = 0;
+  totalExpense = 0;
 
   // Loop through the expense data and add up all the amounts
   data.expenseData.forEach((expense) => {
@@ -329,36 +356,9 @@ document
 // Currently chart get's updated automatically when DOM loads, and whever a table is updated via filtering/sorting
 
 function updateChart() {
-  // Get the total amounts of the two tables
-  // This will depend on how your data is structured
+  // Update the chart dataset with the values that are updated when tables are updated
+  chart.data.datasets[0].data = [totalIncome, totalExpense];
 
-  // Get a reference to the <canvas> element
-  const ctx = document.getElementById('chart').getContext('2d');
-
-  // Create a new Chart instance with the data
-  const chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Income', 'Expense'],
-      datasets: [
-        {
-          label: 'Total Amount',
-          data: [totalIncome, totalExpense], // Replace these with your actual data
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-          ],
-          borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
+  // Update the chart
+  chart.update();
 }
