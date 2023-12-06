@@ -113,22 +113,48 @@ document
     // Open a form to input the new income data
   });
 
-document.addEventListener('DOMContentLoaded', function () {
-  function filterDropdown(searchInput, dropdown) {
-    var searchTerm = searchInput.value.toLowerCase();
-    var options = dropdown.options;
+// FUNCTION TO POPULATE THE CLIENT AND INCOME TYPE DROPDOWNS using the API we created
 
-    for (var i = 0; i < options.length; i++) {
-      var optionText = options[i].text.toLowerCase();
-      options[i].style.display = optionText.includes(searchTerm) ? '' : 'none';
-    }
+document.addEventListener('DOMContentLoaded', async function () {
+  try {
+    // Select the dropdowns
+    const clientDropdown = document.getElementById('clientDropdown');
+    const incomeTypeDropdown = document.getElementById('incomeType');
+
+    // Add loading placeholders - could add spinners in the future - these should never be seen anyway
+    clientDropdown.innerHTML =
+      '<option value="" disabled selected>Loading Clients...</option>';
+    incomeTypeDropdown.innerHTML =
+      '<option value="" disabled selected>Loading Income Types...</option>';
+
+    // Make API requests to get the clients and income types
+    const clientsResponse = await fetch('/api/income/client');
+    const incomeTypesResponse = await fetch('/api/income/type');
+
+    // Parse responses
+    const clients = await clientsResponse.json();
+    const incomeTypes = await incomeTypesResponse.json();
+
+    // Clear dropdowns
+    clientDropdown.innerHTML = '';
+    incomeTypeDropdown.innerHTML = '';
+
+    // Loop thru' clients and add them to the client dropdown
+    clients.forEach((client) => {
+      const option = document.createElement('option');
+      option.value = client.id;
+      option.text = client.name;
+      clientDropdown.add(option);
+    });
+
+    // Loop through the income types and add them to the income type dropdown
+    incomeTypes.forEach((incomeType) => {
+      const option = document.createElement('option');
+      option.value = incomeType.id;
+      option.text = incomeType.name;
+      incomeTypeDropdown.add(option);
+    });
+  } catch (error) {
+    console.error('Error:', error);
   }
-
-  // Client dropdown search functionality
-  var clientSearch = document.getElementById('clientSearch');
-  var clientDropdown = document.getElementById('client');
-
-  clientSearch.addEventListener('input', function () {
-    filterDropdown(clientSearch, clientDropdown);
-  });
 });
