@@ -97,7 +97,7 @@ router.get('/', withAuth, async (req, res) => {
   // should now be able to make queries like api/income?sortBy=due_date&order=DESC and api/income?startDueDate=2022-01-01&endDueDate=2022-12-31
 });
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/addincome', withAuth, async (req, res) => {
   try {
     // Use req.session.user_id to get the currently logged-in user's ID
     const userId = req.session.user_id;
