@@ -2,16 +2,15 @@
 // TODO in future: add functionality to filter by date range
 // TODO in future: add functionality to filter by client and income type
 
-// DISPLAY CURRENT DATE ON DASHBOARD LOAD
-document.addEventListener('DOMContentLoaded', function () {
+//______________________EVENT LISTENER FOR DOM LOAD - DATE AND INCOME/EXPENSE DROPDOWNS_____________________
+document.addEventListener('DOMContentLoaded', async function () {
+  // DISPLAY CURRENT DATE ON DASHBOARD LOAD
   const currentDateElement = document.getElementById('currentDate');
   const currentDate = new Date();
   currentDateElement.textContent = currentDate.toDateString();
-});
 
-//______________________ON LOAD POPULATE THE CLIENT AND INCOME TYPE DROPDOWNS using the API we created_____________________
-document.addEventListener('DOMContentLoaded', async function () {
   try {
+    // ON LOAD POPULATE THE CLIENT AND INCOME TYPE DROPDOWNS using the API we created
     // Select the dropdowns
     const clientSelect = document.getElementById('clientSelect');
     const incomeTypeSelect = document.getElementById('incomeTypeSelect');
@@ -39,14 +38,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       option.text = incomeType.income_name;
       incomeTypeSelect.add(option);
     });
-  } catch (error) {
-    console.error('Error:', error);
-  }
-});
 
-//______________________ON LOAD POPULATE THE VENDOR AND EXPENSE TYPE DROPDOWNS using the API we created_____________________
-document.addEventListener('DOMContentLoaded', async function () {
-  try {
+    // ON LOAD POPULATE THE VENDOR AND EXPENSE TYPE DROPDOWNS using the API we created
     // Select the dropdowns
     const vendorSelect = document.getElementById('vendorSelect');
     const expenseTypeSelect = document.getElementById('expenseTypeSelect');
