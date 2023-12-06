@@ -1,6 +1,7 @@
 // TODO in future: refactor by seperating functions for income and expenses into seperate files
-// TODO in future: add functionality to filter by date range
-// TODO in future: add functionality to filter by client and income type
+//GLOBAL VARIABLES
+let totalIncome = 0;
+let totalExpense = 0;
 
 //______________________EVENT LISTENER FOR DOM LOAD - DATE AND INCOME/EXPENSE DROPDOWNS_____________________
 document.addEventListener('DOMContentLoaded', async function () {
@@ -67,9 +68,23 @@ document.addEventListener('DOMContentLoaded', async function () {
       option.text = expenseType.expense_name;
       expenseTypeSelect.add(option);
     });
-  } catch (error) {
-    console.error('Error:', error);
+
+    //API CALLS TO UPDATE THE TOTAL INCOME AND TOTAL EXPENSE for use in updateChart()
+    // Fetch the total income and total expense from the API
+    const totalIncomeResponse = await fetch('/api/income/total');
+    const totalExpenseResponse = await fetch('/api/expense/total');
+
+    // Assign the total income and total expense to the global variables
+    // Don't need to be parsed as the apis are returning a single number
+    totalIncome = await totalIncomeResponse.json();
+    totalExpense = await totalExpenseResponse.json();
+  } catch (err) {
+    console.error('Error:', err);
   }
+  console.log('Total Income:', totalIncome);
+  console.log('Total Expense:', totalExpense);
+  // Update the chart on page load.
+  updateChart();
 });
 
 //______________________EVENT LISTENER FOR THE INCOME/EXPENSE FILTER FORMs_____________________
@@ -179,14 +194,18 @@ async function updateIncomeTable() {
     tbody.appendChild(row);
   });
   // Reset the total income to 0
-  let sumAmount = 0;
+  let totalIncome = 0;
 
   // Loop through the income data and add up all the amounts
   data.incomeData.forEach((income) => {
-    sumAmount += parseFloat(income.amount);
+    totalIncome += parseFloat(income.amount);
   });
   // Render the sumAmount to the table footer as a number with 2 decimal places
-  document.querySelector('#incomeSumAmount').textContent = sumAmount.toFixed(2);
+  document.querySelector('#incomeSumAmount').textContent =
+    totalIncome.toFixed(2);
+
+  // update the chart with a new income total
+  updateChart();
 }
 
 //______________________FUNCTION TO UPDATE THE EXPENSE TABLE USING FILTERS_____________________
@@ -276,16 +295,19 @@ async function updateExpenseTable() {
   });
 
   // Reset the total expense to 0
-  let sumAmount = 0;
+  let totalExpense = 0;
 
   // Loop through the expense data and add up all the amounts
   data.expenseData.forEach((expense) => {
-    sumAmount += parseFloat(expense.amount);
+    totalExpense += parseFloat(expense.amount);
   });
 
   // Render the sumAmount to the table footer
   document.querySelector('#expenseSumAmount').textContent =
-    sumAmount.toFixed(2);
+    totalExpense.toFixed(2);
+
+  // update the chart with a new expense total
+  updateChart();
 }
 
 // TODO - add following functionality
@@ -301,3 +323,42 @@ document
   .addEventListener('click', function () {
     // Open a form to input the new income data
   });
+
+//______________________CHARTS____________________
+// TODO - expound on this and add more chartts/functionality - move to new JS file
+// Currently chart get's updated automatically when DOM loads, and whever a table is updated via filtering/sorting
+
+function updateChart() {
+  // Get the total amounts of the two tables
+  // This will depend on how your data is structured
+
+  // Get a reference to the <canvas> element
+  const ctx = document.getElementById('chart').getContext('2d');
+
+  // Create a new Chart instance with the data
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Income', 'Expense'],
+      datasets: [
+        {
+          label: 'Total Amount',
+          data: [totalIncome, totalExpense], // Replace these with your actual data
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+          ],
+          borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
