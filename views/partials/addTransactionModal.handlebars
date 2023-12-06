@@ -1,0 +1,42 @@
+<div id='addTransactionModal' class='modal'>
+  <div>
+    <h2>Add Transaction</h2>
+    <form id='addTransactionForm'>
+      <label for='transactionType'>Transaction Type:</label>
+      <select id='transactionType' name='transaction_type'>
+        {{!-- Depending on which is selected the corresponding form will be shown --}}
+        <option value='income'>Income</option>
+        <option value='expense'>Expense</option>
+      </select>
+
+      <div id='incomeFields'>
+        <!-- Income fields go here -->
+        {{! eg: }}
+        <label for='addIncomeClientSelect'>Client:</label>
+        <select id='addIncomeClientSelect' name='client'>
+          <!-- Existing clients will be added here dynamically -->
+          <option value='add_new'>Add New Client</option>
+        </select>
+
+    <!-- Add Client Form that only appears if  add_new is selected from the addIncomeClientSelect -->
+    <div id='addClientForm' style='display: none;'>
+        <h3>Add New Client</h3>
+        <label for='newClientName'>Client Name:</label>
+        <input type='text' id='newClientName' name='new_client_name' required>
+        <button type='button' id='addClientButton'>Add Client</button>
+    </div>
+    </div>
+
+
+      </div>
+
+      <div id='expenseFields' style='display: none;'>
+        <!-- Expense fields go here -->
+      </div>
+
+      <button type='submit'>Add Transaction</button>
+    </form>
+  </div>
+</div>
+
+<script src='/js/addDataModal'></script>
