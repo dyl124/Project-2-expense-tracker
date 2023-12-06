@@ -1,3 +1,10 @@
+// display the current date on page load
+document.addEventListener('DOMContentLoaded', function () {
+  const currentDateElement = document.getElementById('currentDate');
+  const currentDate = new Date();
+  currentDateElement.textContent = currentDate.toDateString();
+});
+
 // change listens for any change in the form, eg when a user selects a new option from the dropdown
 // maybe change code to a button that says "filter" and then it will fetch the data from the API once clicked
 document
@@ -105,21 +112,6 @@ document
   .addEventListener('click', function () {
     // Open a form to input the new income data
   });
-
-// JavaScript code to update the current date
-document.getElementById('currentDate').innerText =
-  'Today is ' + getCurrentDate();
-
-function getCurrentDate() {
-  const now = new Date();
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  return now.toLocaleDateString('en-US', options);
-}
 
 document.addEventListener('DOMContentLoaded', function () {
   function filterDropdown(searchInput, dropdown) {
