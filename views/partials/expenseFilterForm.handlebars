@@ -4,27 +4,29 @@
   <label for='invoiceId'>Invoice ID:</label>
   <input type='text' id='invoiceId' name='invoice_id' />
 
-  <label for='vendorDropdown'>Vendor:</label>
-  <select id='vendorDropdown' name='vendor'>
+  <label for='vendorSelect'>Vendor:</label>
+  <select id='vendorSelect' name='vendor'>
     {{! Dynamically generate dropdown options in dashboard.js }}
   </select>
 
-  <label for='expenseType'>Expense Type:</label>
-  <select id='expenseType' name='expense_type'>
+  
+  <label for='expenseTypeSelect'>Expense Type:</label>
+  <select id='expenseTypeSelect' name='expense_type'>
     {{! Dynamically generate dropdown options in dashboard.js }}
   </select>
 
-  <label for='paymentStatus'>Paid:</label>
-  <select id='paymentStatus' name='payment_status'>
-    <option value='true'>Yes</option>
-    <option value='false'>No</option>
+  <label for='paymentStatusSelect'>Paid:</label>
+  <select id='paymentStatusSelect' name='payment_status'>
+    <option value=''>All</option>
+    <option value='1'>Yes</option>
+    <option value='0'>No</option>
   </select>
 
   <h2>Sort Options</h2>
 
-  <label for='sortBy'>Sort By:</label>
-  <select id='sortBy' name='sortBy'>
-     <option value='invoice_id'>Invoice ID</option>
+  <label for='sortSelect'>Sort By:</label>
+  <select id='sortSelect' name='sort'>
+    <option value='invoice_id'>Invoice ID</option>
     <option value='issue_date'>Issue Date</option>
     <option value='vendor_name'>Vendor Name</option>
     <option value='expense_type_name'>Expense Type</option>
@@ -33,9 +35,9 @@
     <option value='due_date'>Due Date</option>
     <option value='payment_status'>Payment Status</option>
   </select>
-
-  <label for='order'>Order:</label>
-  <select id='order' name='order'>
+   <label for='orderSelect'>Order:</label>
+  
+  <select id='orderSelect' name='order'>
     <option value='ASC'>Ascending</option>
     <option value='DESC'>Descending</option>
   </select>
