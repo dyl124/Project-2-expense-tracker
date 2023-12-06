@@ -1,5 +1,13 @@
 const router = require('express').Router();
-const { User, Income, IncomeType, Client, Expense } = require('../models');
+const {
+  User,
+  Income,
+  IncomeType,
+  Client,
+  Expense,
+  ExpenseType,
+  Vendor,
+} = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/dashboard', withAuth, async (req, res) => {
