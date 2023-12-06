@@ -11,7 +11,7 @@ Vendor.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    vendor_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
