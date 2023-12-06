@@ -11,7 +11,7 @@ Client.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    client_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
