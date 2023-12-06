@@ -1,11 +1,11 @@
 <form id='income-filter-form'>
   <h3>Filter Options</h3>
 
-  <label for='invoiceIdInput'>Invoice ID:</label>
-  <input type='text' id='invoiceIdInput' name='invoice_id' />
+  <label for='incomeInvoiceIdInput'>Invoice ID:</label>
+  <input type='text' id='incomeInvoiceIdInput' name='invoice_id' />
 
-  <label for='clientSelect'>Client:</label>
-  <select id='clientSelect' name='client'>
+  <label for='incomeClientSelect'>Client:</label>
+  <select id='incomeClientSelect' name='client'>
     <option value=''>All Clients</option>
     {{! Dynamically generate dropdown options in dashboard.js }}
   </select>
@@ -16,8 +16,8 @@
     {{! Dynamically generate dropdown options in dashboard.js }}
   </select>
 
-  <label for='paymentStatusSelect'>Paid:</label>
-  <select id='paymentStatusSelect' name='payment_status'>
+  <label for='incomePaymentStatusSelect'>Paid:</label>
+  <select id='incomePaymentStatusSelect' name='payment_status'>
     <option value=''>All</option>
     <option value='1'>Yes</option>
     <option value='0'>No</option>
@@ -25,8 +25,8 @@
 
   <h3>Sort Options</h3>
 
-  <label for='sortSelect'>Sort By:</label>
-  <select id='sortSelect' name='sort'>
+  <label for='incomeSortSelect'>Sort By:</label>
+  <select id='incomeSortSelect' name='sort'>
     <option value='invoice_id'>Invoice ID</option>
     <option value='issue_date'>Issue Date</option>
     {{! Need to remove the following options until future dev:
@@ -39,8 +39,8 @@
     <option value='payment_status'>Payment Status</option>
   </select>
 
-  <label for='orderSelect'>Order:</label>
-  <select id='orderSelect' name='order'>
+  <label for='incomeOrderSelect'>Order:</label>
+  <select id='incomeOrderSelect' name='order'>
     <option value='ASC'>Ascending</option>
     <option value='DESC'>Descending</option>
   </select>
