@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Income, IncomeType, Client, Expense } = require('../models');
 const withAuth = require('../utils/auth');
 
-outer.get('/dashboard', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Fetch the all income data from API for table in incomeTable partial
     const incomeData = await Income.findAll({
