@@ -1,10 +1,10 @@
 [
-    {
-      "name": "Product Sales",
-      "user_id": 1
-    },
-    {
-      "name": "Service Fee",
-      "user_id": 1
-    }
-  ]
+  {
+    "income_name": "Product Sales",
+    "user_id": 1
+  },
+  {
+    "income_name": "Service Fee",
+    "user_id": 1
+  }
+]

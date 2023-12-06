@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     clients.forEach((client) => {
       const option = document.createElement('option');
       option.value = client.id;
-      option.text = client.name;
+      option.text = client.client_name;
       clientDropdown.add(option);
     });
 
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     incomeTypes.forEach((incomeType) => {
       const option = document.createElement('option');
       option.value = incomeType.id;
-      option.text = incomeType.name;
+      option.text = incomeType.income_name;
       incomeTypeDropdown.add(option);
     });
   } catch (error) {
