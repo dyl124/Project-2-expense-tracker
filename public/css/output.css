@@ -2,6 +2,14 @@
   background-color: #07252d;
 }
 
+#signupDiv {
+  display: none;
+}
+
+#loginDiv{
+  display: inherit;
+}
+
 h1{
   font-size: 6em;
   letter-spacing: 15px;
@@ -575,18 +583,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.visible {
-  visibility: visible;
-}
-
-.collapse {
-  visibility: collapse;
-}
-
-.relative {
-  position: relative;
-}
-
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -597,10 +593,6 @@ video {
 
 .me-2 {
   margin-inline-end: 0.5rem;
-}
-
-.block {
-  display: block;
 }
 
 .flex {
@@ -615,28 +607,8 @@ video {
   display: grid;
 }
 
-.contents {
-  display: contents;
-}
-
-.hidden {
-  display: none;
-}
-
 .h-screen {
   height: 100vh;
-}
-
-.border-collapse {
-  border-collapse: collapse;
-}
-
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.resize {
-  resize: both;
 }
 
 .grid-flow-row-dense {
@@ -645,6 +617,10 @@ video {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .items-center {
@@ -666,10 +642,6 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
-}
-
-.border {
-  border-width: 1px;
 }
 
 .bg-sky-300 {
@@ -733,10 +705,6 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.underline {
-  text-decoration-line: underline;
-}
-
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -752,20 +720,6 @@ video {
 .shadow-teal-500\/50 {
   --tw-shadow-color: rgb(20 184 166 / 0.5);
   --tw-shadow: var(--tw-shadow-colored);
-}
-
-.shadow-teal-500 {
-  --tw-shadow-color: #14b8a6;
-  --tw-shadow: var(--tw-shadow-colored);
-}
-
-.shadow-teal-800 {
-  --tw-shadow-color: #115e59;
-  --tw-shadow: var(--tw-shadow-colored);
-}
-
-.outline {
-  outline-style: solid;
 }
 
 .hover\:bg-gradient-to-br:hover {
