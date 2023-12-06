@@ -1,7 +1,7 @@
 <table>
   <thead>
     <tr>
-      <th>Expense ID</th>
+      <th>Invoice ID</th>
       <th>Issue Date</th>
       <th>Vendor</th>
       <th>Type</th>
@@ -14,7 +14,7 @@
   <tbody>
     {{#each expenses}}
       <tr>
-        <td>{{this.expense_id}}</td>
+        <td>{{this.invoice_id}}</td>
         <td>{{this.issue_date}}</td>
         <td>{{this.vendor.vendor_name}}</td>
         <td>{{this.expense_type.expense_name}}</td>
