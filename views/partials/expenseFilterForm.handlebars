@@ -1,0 +1,44 @@
+<form id='expense-filter-form'>
+  <h2>Filter Options</h2>
+
+  <label for='invoiceId'>Invoice ID:</label>
+  <input type='text' id='invoiceId' name='invoice_id' />
+
+  <label for='vendorDropdown'>Vendor:</label>
+  <select id='vendorDropdown' name='vendor'>
+    {{! Dynamically generate dropdown options in dashboard.js }}
+  </select>
+
+  <label for='expenseType'>Expense Type:</label>
+  <select id='expenseType' name='expense_type'>
+    {{! Dynamically generate dropdown options in dashboard.js }}
+  </select>
+
+  <label for='paymentStatus'>Paid:</label>
+  <select id='paymentStatus' name='payment_status'>
+    <option value='true'>Yes</option>
+    <option value='false'>No</option>
+  </select>
+
+  <h2>Sort Options</h2>
+
+  <label for='sortBy'>Sort By:</label>
+  <select id='sortBy' name='sortBy'>
+    <option value='expense_id'>Expense ID</option>
+    <option value='issue_date'>Issue Date</option>
+    <option value='vendor_name'>Vendor Name</option>
+    <option value='expense_type_name'>Expense Type</option>
+    <option value='description'>Description</option>
+    <option value='amount'>Amount</option>
+    <option value='due_date'>Due Date</option>
+    <option value='payment_status'>Payment Status</option>
+  </select>
+
+  <label for='order'>Order:</label>
+  <select id='order' name='order'>
+    <option value='ASC'>Ascending</option>
+    <option value='DESC'>Descending</option>
+  </select>
+
+  <button type='submit'>Apply Filters / Sort</button>
+</form>

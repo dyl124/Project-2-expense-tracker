@@ -1,0 +1,37 @@
+<table>
+  <thead>
+    <tr>
+      <th>Expense ID</th>
+      <th>Issue Date</th>
+      <th>Vendor</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Due Date</th>
+      <th>Payment Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each expenses}}
+      <tr>
+        <td>{{this.expense_id}}</td>
+        <td>{{this.issue_date}}</td>
+        <td>{{this.vendor.vendor_name}}</td>
+        <td>{{this.expense_type.expense_name}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.amount}}</td>
+        <td>{{this.due_date}}</td>
+        <td>{{this.payment_status}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan='5'>Total:</td>
+      <td id='sumAmount'>{{sumAmount}}</td>
+      <td colspan='2'></td>
+    </tr>
+  </tfoot>
+</table>
+
+<button id='add-expense-button'>Add An Expense</button>
