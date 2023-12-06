@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   try {
     // ON LOAD POPULATE THE CLIENT AND INCOME TYPE DROPDOWNS using the API we created
     // Select the dropdowns
-    const clientSelect = document.getElementById('clientSelect');
+    const clientSelect = document.getElementById('incomeClientSelect');
     const incomeTypeSelect = document.getElementById('incomeTypeSelect');
 
     // Make API requests to get the clients and income types
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // ON LOAD POPULATE THE VENDOR AND EXPENSE TYPE DROPDOWNS using the API we created
     // Select the dropdowns
-    const vendorSelect = document.getElementById('vendorSelect');
+    const vendorSelect = document.getElementById('expenseVendorSelect');
     const expenseTypeSelect = document.getElementById('expenseTypeSelect');
 
     // Make API requests to get the vendors and expense types
@@ -92,12 +92,14 @@ document
 // ________________FUNCTION TO UPDATE THE INCOME TABLE USING FILTERS_____________________
 async function updateIncomeTable() {
   // Get the form elements
-  const invoiceIdInput = document.getElementById('invoiceIdInput'); // Might simplify by removing this
-  const clientSelect = document.getElementById('clientSelect');
+  const invoiceIdInput = document.getElementById('incomeInvoiceIdInput');
+  const clientSelect = document.getElementById('incomeClientSelect');
   const incomeTypeSelect = document.getElementById('incomeTypeSelect');
-  const paymentStatusSelect = document.getElementById('paymentStatusSelect');
-  const sortSelect = document.getElementById('sortSelect');
-  const orderSelect = document.getElementById('orderSelect');
+  const paymentStatusSelect = document.getElementById(
+    'incomePaymentStatusSelect'
+  );
+  const sortSelect = document.getElementById('incomeSortSelect');
+  const orderSelect = document.getElementById('incomeOrderSelect');
 
   // Create an object with the parameters for the API request (all are optional except sort - some can be empty though
   const params = {
@@ -132,7 +134,7 @@ async function updateIncomeTable() {
   console.log(data);
 
   // Get the table body
-  const tbody = document.querySelector('table tbody');
+  const tbody = document.querySelector('#incomeTable tbody');
 
   // Clear the existing table data
   tbody.innerHTML = '';
@@ -184,18 +186,20 @@ async function updateIncomeTable() {
     sumAmount += parseFloat(income.amount);
   });
   // Render the sumAmount to the table footer as a number with 2 decimal places
-  document.querySelector('#sumAmount').textContent = sumAmount.toFixed(2);
+  document.querySelector('#incomeSumAmount').textContent = sumAmount.toFixed(2);
 }
 
 //______________________FUNCTION TO UPDATE THE EXPENSE TABLE USING FILTERS_____________________
 async function updateExpenseTable() {
   // Get the form elements
-  const invoiceIdInput = document.getElementById('invoiceIdInput');
-  const vendorSelect = document.getElementById('vendorSelect');
+  const invoiceIdInput = document.getElementById('expenseInvoiceId');
+  const vendorSelect = document.getElementById('expenseVendorSelect');
   const expenseTypeSelect = document.getElementById('expenseTypeSelect');
-  const paymentStatusSelect = document.getElementById('paymentStatusSelect');
-  const sortSelect = document.getElementById('sortSelect');
-  const orderSelect = document.getElementById('orderSelect');
+  const paymentStatusSelect = document.getElementById(
+    'expensePaymentStatusSelect'
+  );
+  const sortSelect = document.getElementById('expenseSortSelect');
+  const orderSelect = document.getElementById('expenseOrderSelect');
 
   // Create an object with the parameters for the API request
   const params = {
@@ -227,7 +231,7 @@ async function updateExpenseTable() {
   console.log(data);
 
   // Get the table body
-  const tbody = document.querySelector('table tbody');
+  const tbody = document.querySelector('#expenseTable tbody');
 
   // Clear the existing table data
   tbody.innerHTML = '';
@@ -280,7 +284,8 @@ async function updateExpenseTable() {
   });
 
   // Render the sumAmount to the table footer
-  document.querySelector('#sumAmount').textContent = sumAmount.toFixed(2);
+  document.querySelector('#expenseSumAmount').textContent =
+    sumAmount.toFixed(2);
 }
 
 // TODO - add following functionality

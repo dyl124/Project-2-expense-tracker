@@ -1,43 +1,45 @@
 <form id='expense-filter-form'>
-  <h2>Filter Options</h2>
+  <h3>Filter Options</h3>
 
-  <label for='invoiceId'>Invoice ID:</label>
-  <input type='text' id='invoiceId' name='invoice_id' />
+  <label for='expenseInvoiceId'>Invoice ID:</label>
+  <input type='text' id='expenseInvoiceId' name='invoice_id' />
 
-  <label for='vendorSelect'>Vendor:</label>
-  <select id='vendorSelect' name='vendor'>
+  <label for='expenseVendorSelect'>Vendor:</label>
+  <select id='expenseVendorSelect' name='vendor'>
+    <option value=''>All Vendors</option>
     {{! Dynamically generate dropdown options in dashboard.js }}
   </select>
 
-  
   <label for='expenseTypeSelect'>Expense Type:</label>
   <select id='expenseTypeSelect' name='expense_type'>
+    <option value=''>All Types</option>
     {{! Dynamically generate dropdown options in dashboard.js }}
   </select>
 
-  <label for='paymentStatusSelect'>Paid:</label>
-  <select id='paymentStatusSelect' name='payment_status'>
+  <label for='expensePaymentStatusSelect'>Paid:</label>
+  <select id='expensePaymentStatusSelect' name='payment_status'>
     <option value=''>All</option>
     <option value='1'>Yes</option>
     <option value='0'>No</option>
   </select>
 
-  <h2>Sort Options</h2>
+  <h3>Sort Options</h3>
 
-  <label for='sortSelect'>Sort By:</label>
-  <select id='sortSelect' name='sort'>
+  <label for='expenseSortSelect'>Sort By:</label>
+  <select id='expenseSortSelect' name='sort'>
     <option value='invoice_id'>Invoice ID</option>
     <option value='issue_date'>Issue Date</option>
-    <option value='vendor_name'>Vendor Name</option>
-    <option value='expense_type_name'>Expense Type</option>
+    {{! Had to remove following functions. See  incomeFilterForm }}
+    {{! <option value='vendor_name'>Vendor Name</option>
+    <option value='expense_type_name'>Expense Type</option> }}
     <option value='description'>Description</option>
     <option value='amount'>Amount</option>
     <option value='due_date'>Due Date</option>
     <option value='payment_status'>Payment Status</option>
   </select>
-   <label for='orderSelect'>Order:</label>
-  
-  <select id='orderSelect' name='order'>
+
+  <label for='expenseOrderSelect'>Order:</label>
+  <select id='expenseOrderSelect' name='order'>
     <option value='ASC'>Ascending</option>
     <option value='DESC'>Descending</option>
   </select>
