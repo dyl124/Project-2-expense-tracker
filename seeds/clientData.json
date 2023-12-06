@@ -1,11 +1,10 @@
 [
-    {
-      "name": "Client A",
-      "user_id": 1
-    },
-    {
-      "name": "Client B",
-      "user_id": 1
-    }
-  ]
-  
+  {
+    "client_name": "Client A",
+    "user_id": 1
+  },
+  {
+    "client_name": "Client B",
+    "user_id": 1
+  }
+]
