@@ -11,7 +11,7 @@ ExpenseType.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    expense_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },

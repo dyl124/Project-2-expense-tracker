@@ -1,10 +1,10 @@
 [
   {
-    "name": "Office Supplies",
+    "expense_name": "Office Supplies",
     "user_id": 1
   },
   {
-    "name": "Software Subscriptions",
+    "expense_name": "Software Subscriptions",
     "user_id": 1
   }
 ]

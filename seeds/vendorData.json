@@ -1,10 +1,10 @@
 [
     {
-      "name": "Vendor X",
+      "vendor_name": "Vendor X",
       "user_id": 1
     },
     {
-      "name": "Vendor Y",
+      "vendor_name": "Vendor Y",
       "user_id": 1
     }
   ]
