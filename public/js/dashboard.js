@@ -1,111 +1,115 @@
-// display the current date on page load
+// DISPLAY CURRENT DATE ON DASHBOARD LOAD
 document.addEventListener('DOMContentLoaded', function () {
   const currentDateElement = document.getElementById('currentDate');
   const currentDate = new Date();
   currentDateElement.textContent = currentDate.toDateString();
 });
 
-// change listens for any change in the form, eg when a user selects a new option from the dropdown
-// maybe change code to a button that says "filter" and then it will fetch the data from the API once clicked
+//EVENT LISTENER FOR THE INCOME FILTER FORM
 document
   .querySelector('#income-filter-form')
-  .addEventListener('submit', async function (event) {
+  .addEventListener('submit', function (event) {
     event.preventDefault();
-
-    const params = {};
-    // logic for filtering and creating the url below
-    // Checkboxes (replace these with your actual checkbox elements)
-    // Dropdowns (replace these with your actual dropdown elements)
-    const invoiceIdDropdown = document.getElementById('invoiceId');
-    const clientDropdown = document.getElementById('clientDropdown');
-    const paymentStatusDropdown = document.getElementById('paymentStatus');
-
-    // If invoice_id dropdown has a selected value, add it to the params
-    if (invoiceIdDropdown.value) {
-      params.invoice_id = invoiceIdDropdown.value;
-    } else {
-      console.log('Invoice ID parameter not selected.');
-    }
-
-    if (clientDropdown.value) {
-      params.client = clientDropdown.value;
-    } else {
-      console.log('Client parameter not selected.');
-    }
-
-    if (paymentStatusDropdown.value) {
-      params.paymentStatus = paymentStatusDropdown.value;
-    } else {
-      console.log('Payment Status parameter not selected.');
-    }
-
-    // Construct the URL with the parameters
-    const paramString = new URLSearchParams(params).toString();
-    console.log(paramString);
-
-    // Fetch the filtered data from the API
-    const response = await fetch(`/api/income?${paramString}`, {
-      method: 'GET',
-      // Add any necessary headers and query parameters here
-    });
-    const data = await response.json();
-    console.log(data);
-    // Get the table body
-    const tbody = document.querySelector('table tbody');
-
-    // Clear the existing table data
-    tbody.innerHTML = '';
-
-    data.incomeData.forEach((income) => {
-      const row = document.createElement('tr');
-
-      // Create a new cell for each property of the item
-      // Adjusted to handle nested properties
-      const cellInvoiceId = document.createElement('td');
-      cellInvoiceId.textContent = income.invoice_id;
-      row.appendChild(cellInvoiceId);
-
-      const cellIssueDate = document.createElement('td');
-      cellIssueDate.textContent = income.issue_date;
-      row.appendChild(cellIssueDate);
-
-      const cellClient = document.createElement('td');
-      cellClient.textContent = income.client.name; // Assuming client is an object with a name property
-      row.appendChild(cellClient);
-
-      const cellIncomeType = document.createElement('td');
-      cellIncomeType.textContent = income.income_type.name; // Assuming income_type is an object with a name property
-      row.appendChild(cellIncomeType);
-
-      const cellDescription = document.createElement('td');
-      cellDescription.textContent = income.description;
-      row.appendChild(cellDescription);
-
-      const cellAmount = document.createElement('td');
-      cellAmount.textContent = income.amount;
-      row.appendChild(cellAmount);
-
-      const cellDueDate = document.createElement('td');
-      cellDueDate.textContent = income.due_date;
-      row.appendChild(cellDueDate);
-
-      const cellPaymentStatus = document.createElement('td');
-      cellPaymentStatus.textContent = income.payment_status;
-      row.appendChild(cellPaymentStatus);
-
-      tbody.appendChild(row);
-    });
-
-    // Reset the total income to 0
-    let sumAmount = 0;
-
-    // Loop through the income data and add up all the amounts
-    data.incomeData.forEach((income) => {
-      sumAmount += parseFloat(income.amount);
-    });
-    // Render the sumAmount to the table footer as a number with 2 decimal places
-    document.querySelector('#sumAmount').textContent = sumAmount.toFixed(2);
+    updateIncomeTable();
   });
+
+// FUNCTION TO UPDATE THE INCOME TABLE
+async function updateIncomeTable() {
+  // Get the form elements
+  const invoiceIdInput = document.getElementById('invoiceIdInput'); // Might simplify by removing this
+  const clientSelect = document.getElementById('clientSelect');
+  const incomeTypeSelect = document.getElementById('incomeTypeSelect');
+  const paymentStatusSelect = document.getElementById('paymentStatusSelect');
+  const sortSelect = document.getElementById('sortSelect');
+  const orderSelect = document.getElementById('orderSelect');
+
+  // Create an object with the parameters for the API request (all are optional except sort - some can be empty though
+  const params = {
+    invoice_id: invoiceIdInput.value, // Might simplify by removing this
+    client: clientSelect.value, // values are dynamically generated blow as client.id
+    income_type: incomeTypeSelect.value, // values are dynamically generated blow as client.id
+    payment_status: paymentStatusSelect.value, // values are 1 or 0 to match DB.
+    sort: sortSelect.value, //values for sorting - currently incometype and client unsupported/removed
+    order: orderSelect.value, // values are asc or desc
+  };
+
+  // Handle the empty parameters by looping through all and removing those that are ''
+  // Use Object.keys()
+  // https://stackoverflow.com/questions/48962239/how-do-i-loop-through-object-and-remove-properties-which-are-not-equal-to-someth
+  Object.keys(params).forEach((key) => {
+    if (params[key] === '') {
+      delete params[key];
+    }
+  });
+
+  // Construct the URL with the parameters
+  const paramString = new URLSearchParams(params).toString();
+  console.log(paramString);
+
+  // Fetch the filtered data from the API
+  const response = await fetch(`/api/income?${paramString}`, {
+    method: 'GET',
+    // Add any necessary headers and query parameters here
+  });
+
+  const data = await response.json();
+  console.log(data);
+
+  // Get the table body
+  const tbody = document.querySelector('table tbody');
+
+  // Clear the existing table data
+  tbody.innerHTML = '';
+
+  data.incomeData.forEach((income) => {
+    const row = document.createElement('tr');
+
+    // Create a new cell for each property of the item
+    // Adjusted to handle nested properties
+    const cellInvoiceId = document.createElement('td');
+    cellInvoiceId.textContent = income.invoice_id;
+    row.appendChild(cellInvoiceId);
+
+    const cellIssueDate = document.createElement('td');
+    cellIssueDate.textContent = income.issue_date;
+    row.appendChild(cellIssueDate);
+
+    const cellClient = document.createElement('td');
+    cellClient.textContent = income.client.client_name;
+    row.appendChild(cellClient);
+
+    const cellIncomeType = document.createElement('td');
+    cellIncomeType.textContent = income.income_type.income_name;
+    row.appendChild(cellIncomeType);
+
+    const cellDescription = document.createElement('td');
+    cellDescription.textContent = income.description;
+    row.appendChild(cellDescription);
+
+    const cellAmount = document.createElement('td');
+    cellAmount.textContent = income.amount;
+    row.appendChild(cellAmount);
+
+    const cellDueDate = document.createElement('td');
+    cellDueDate.textContent = income.due_date;
+    row.appendChild(cellDueDate);
+
+    const cellPaymentStatus = document.createElement('td');
+    cellPaymentStatus.textContent = income.payment_status;
+    row.appendChild(cellPaymentStatus);
+
+    tbody.appendChild(row);
+  });
+  // Reset the total income to 0
+  let sumAmount = 0;
+
+  // Loop through the income data and add up all the amounts
+  data.incomeData.forEach((income) => {
+    sumAmount += parseFloat(income.amount);
+  });
+  // Render the sumAmount to the table footer as a number with 2 decimal places
+  document.querySelector('#sumAmount').textContent = sumAmount.toFixed(2);
+}
 
 document
   .querySelector('#add-income-button')
@@ -114,18 +118,11 @@ document
   });
 
 // FUNCTION TO POPULATE THE CLIENT AND INCOME TYPE DROPDOWNS using the API we created
-
 document.addEventListener('DOMContentLoaded', async function () {
   try {
     // Select the dropdowns
-    const clientDropdown = document.getElementById('clientDropdown');
-    const incomeTypeDropdown = document.getElementById('incomeType');
-
-    // Add loading placeholders - could add spinners in the future - these should never be seen anyway
-    clientDropdown.innerHTML =
-      '<option value="" disabled selected>Loading Clients...</option>';
-    incomeTypeDropdown.innerHTML =
-      '<option value="" disabled selected>Loading Income Types...</option>';
+    const clientSelect = document.getElementById('clientSelect');
+    const incomeTypeSelect = document.getElementById('incomeTypeSelect');
 
     // Make API requests to get the clients and income types
     const clientsResponse = await fetch('/api/income/client');
@@ -135,16 +132,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     const clients = await clientsResponse.json();
     const incomeTypes = await incomeTypesResponse.json();
 
-    // Clear dropdowns
-    clientDropdown.innerHTML = '';
-    incomeTypeDropdown.innerHTML = '';
-
     // Loop thru' clients and add them to the client dropdown
     clients.forEach((client) => {
       const option = document.createElement('option');
       option.value = client.id;
       option.text = client.client_name;
-      clientDropdown.add(option);
+      clientSelect.add(option);
     });
 
     // Loop through the income types and add them to the income type dropdown
@@ -152,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       const option = document.createElement('option');
       option.value = incomeType.id;
       option.text = incomeType.income_name;
-      incomeTypeDropdown.add(option);
+      incomeTypeSelect.add(option);
     });
   } catch (error) {
     console.error('Error:', error);

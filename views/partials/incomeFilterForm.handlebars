@@ -1,41 +1,46 @@
 <form id='income-filter-form'>
-  <h2>Filter Options</h2>
+  <h3>Filter Options</h3>
 
-  <label for='invoiceId'>Invoice ID:</label>
-  <input type='text' id='invoiceId' name='invoice_id' />
+  <label for='invoiceIdInput'>Invoice ID:</label>
+  <input type='text' id='invoiceIdInput' name='invoice_id' />
 
-  <label for='clientDropdown'>Client:</label>
-  <select id='clientDropdown' name='client'>
+  <label for='clientSelect'>Client:</label>
+  <select id='clientSelect' name='client'>
+    <option value=''>All Clients</option>
     {{! Dynamically generate dropdown options in dashboard.js }}
   </select>
 
-  <label for='incomeType'>Income Type:</label>
-  <select id='incomeType' name='income_type'>
+  <label for='incomeTypeSelect'>Income Type:</label>
+  <select id='incomeTypeSelect' name='income_type'>
+    <option value=''>All Types</option>
     {{! Dynamically generate dropdown options in dashboard.js }}
   </select>
 
-  <label for='paymentStatus'>Paid:</label>
-  <select id='paymentStatus' name='payment_status'>
-    <option value='true'>Yes</option>
-    <option value='false'>No</option>
+  <label for='paymentStatusSelect'>Paid:</label>
+  <select id='paymentStatusSelect' name='payment_status'>
+    <option value=''>All</option>
+    <option value='1'>Yes</option>
+    <option value='0'>No</option>
   </select>
 
-  <h2>Sort Options</h2>
+  <h3>Sort Options</h3>
 
-  <label for='sortBy'>Sort By:</label>
-  <select id='sortBy' name='sortBy'>
+  <label for='sortSelect'>Sort By:</label>
+  <select id='sortSelect' name='sort'>
     <option value='invoice_id'>Invoice ID</option>
     <option value='issue_date'>Issue Date</option>
+    {{! Need to remove the following options until future dev:
     <option value='client_name'>Client Name</option>
-    <option value='income_type_name'>Income Type</option>
+    <option value='income_type.income_name'>Income Type</option>
+    currently, API expects IDs for sorting, but ASC/DESC order of names =/= order of IDs }}
     <option value='description'>Description</option>
     <option value='amount'>Amount</option>
     <option value='due_date'>Due Date</option>
     <option value='payment_status'>Payment Status</option>
   </select>
 
-  <label for='order'>Order:</label>
-  <select id='order' name='order'>
+  <label for='orderSelect'>Order:</label>
+  <select id='orderSelect' name='order'>
     <option value='ASC'>Ascending</option>
     <option value='DESC'>Descending</option>
   </select>
