@@ -60,16 +60,20 @@ The following is a non-exhaustive list of items we would like to address with mo
   - Default sorting should be by `issue_date` and not `invoice_id`.
   - The server-side capabilities exist to be able to sort by date range, but this has not yet been incorporated on the client-side.
 
+### Directions for future development
 - **2FA**
 
-  - About 2FA here...
+  - As Xinc will include the user's senstive financial data, impleneting 2 factor authentication would ensure a more secure experience.
 
-- **Scanning/uploading documents**
+- **Google API to scan text**
 
-  - About scanning/uploading docs here.
+  - If this is successfully implemented users will be able to input their incomes and expenses by uploading documnets which can make Xinc more efficient.
 
 - **Editing/Deleting Data**
   - Currently all the APIs exist to handle editing/deleting data (such as incomes/expenses, clients/vendors and types) on the server-side. With more time, we should be able to implement this functionality on the front-end (client-side) quite easily.
+
+- **PDF Generation**
+  - Can implement technology that generates the user's end of year financial report in the form of a PDF. This will users to be able to keep track of their expenses in a more organised manner
 
 ### UI
 
