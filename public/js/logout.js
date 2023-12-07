@@ -1,27 +1,18 @@
-const loginFormHandler = async (event) => {
-  // Stop the browser from submitting the form so we can do so with JavaScript
-  event.preventDefault();
+const logoutHandler = async () => {
+  const response = await fetch('/user/logout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
 
-  // Gather the data from the form elements on the page
-  const email = document.querySelector('#email-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
-
-  if (email && password) {
-    // Send the e-mail and password to the server
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to log in');
-    }
+  // Send to homepage for login/register if succesful.
+  if (response.ok) {
+    document.location.replace('/');
+    // Reset Modal status
+    sessionStorage.removeItem('incomeModalClosed');
+    sessionStorage.removeItem('expenseModalClosed');
+  } else {
+    alert('Failed to log out.');
   }
 };
 
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+document.querySelector('#logout').addEventListener('click', logoutHandler);
