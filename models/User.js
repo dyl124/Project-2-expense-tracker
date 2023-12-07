@@ -41,6 +41,18 @@ User.init(
       validate: {
         len: [8],
       },
+      confirm_password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [8],
+          matchesPassword(value) {
+            if (value !== this.password) {
+              throw new Error('Passwords do not match');
+            }
+          },
+        },
+      },
     },
   },
   {

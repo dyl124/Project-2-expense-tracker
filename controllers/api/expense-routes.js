@@ -5,9 +5,9 @@ const withAuth = require('../../utils/auth');
 const { Op } = require('sequelize');
 
 // ________________________________________EXPENSE ROUTES____________________________________________
-// i.e. /api/expense - see income-routes.js for examples and comments on how these routes work
-// These routes have been copied from income-routes.js
-// and modified for expenses by changing IncomeType and Client Model references to ExpenseType and Vendor resp.
+// i.e. /api/expense - see expense-routes.js for examples and comments on how these routes work
+// These routes have been copied from expense-routes.js
+// and modified for expenses by changing expenseType and Client Model references to ExpenseType and Vendor resp.
 
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -81,13 +81,13 @@ router.post('/addexpense', withAuth, async (req, res) => {
     // Add the user_id to the request body
     req.body.user_id = userId;
 
-    // Create a new income record
+    // Create a new expense record
     const newExpense = await Expense.create(req.body);
 
     // Send a success-created response
     res.status(201).json(newExpense);
   } catch (err) {
-    console.error('Error creating new income entry:', err);
+    console.error('Error creating new expense entry:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
