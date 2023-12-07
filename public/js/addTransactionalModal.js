@@ -3,15 +3,15 @@ const transactionType = document.getElementById('transactionType');
 
 transactionType.addEventListener('change', function () {
   const toggleClient = document.getElementById('nameReq');
-  const toggleincome = document.getElementById('toggleType');
+  const toggleIncome = document.getElementById('toggleType');
   
   if (transactionType.value === 'income') {
     toggleClient.innerHTML = 'Client Name:';
-    toggleincome.innerHTML = 'Income Type:';
+    toggleIncome.innerHTML = 'Income Type:';
 
   } else if (transactionType.value === 'expense') {
     toggleClient.innerHTML = 'Vendor Name:';
-    toggleincome.innerHTML = 'Expense Type:';
+    toggleIncome.innerHTML = 'Expense Type:';
   }
 });
 // Event listener for add transaction form to make appropriate fetch requests
