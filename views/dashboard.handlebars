@@ -45,9 +45,6 @@
     <div class="bg-sky-300 rounded-lg shadow-xl flex-col justify-center items-center text-center ">
       {{> incomeTable}}
     </div>
-    <div class="bg-sky-300 rounded-lg shadow-xl flex-col justify-center items-center text-center ">
-      {{> addIncomeModal}}
-    </div>
   </div>
   <div>
     <div class="bg-sky-300 rounded-lg shadow-xl flex-col justify-center items-center text-center ">
@@ -57,32 +54,14 @@
       {{> expenseTable}}
     </div>
   </div>
+  <div class="bg-sky-300 rounded-lg shadow-xl flex-col justify-center items-center text-center col-span-2">
+  {{> addTransactionModal}}
+</div>
 </main>
-<div class="bg-white-300 rounded-lg shadow-xl flex-col justify-center items-center text-center ">
-
-
-<div>
-  {{> incomeFilterForm}}
-</div>
-<div>
-{{> incomeTable}}
-</div>
-
-
-<div>
-  {{> expenseFilterForm}}
-</div>
-
-<div>
-  {{> expenseTable}}
-</div>
-
 <div>
   {{> chart}}
 </div>
-<div>
-  {{> addTransactionModal}}
-</div>
+
 
 
 {{!-- Import script for chart --}}
