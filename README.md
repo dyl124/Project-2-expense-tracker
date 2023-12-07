@@ -35,7 +35,7 @@ Xinc was built as an "agile" team-effort consisting of a number of open-source t
 
 ## Installation
 
-No installation is necessary, simply head to the deployed web-app [here](ADD/HEROKU/LINK)
+No installation is necessary, simply head to the deployed web-app [here](https://thawing-wave-01708-07f1cd9e103b.herokuapp.com/).
 
 ## Usage
 
