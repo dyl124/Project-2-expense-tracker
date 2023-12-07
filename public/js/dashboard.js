@@ -110,44 +110,48 @@ document.addEventListener('DOMContentLoaded', async function () {
       },
     },
   });
+
+  //______________________MODALS____________________
+
+  // Get modals
+  var incomeModal = document.querySelector('#incomeModal');
+  var expenseModal = document.querySelector('#expenseModal');
+  // Get modals
+  // Check if the modals exist before attempting to access them
+  if (incomeModal) {
+    // Get close button for the income modal
+    var closeIncomeModalButton = document.querySelector('#closeIncomeModal');
+
+    // Check if the income modal has been closed in this session
+    if (sessionStorage.getItem('incomeModalClosed')) {
+      incomeModal.style.display = 'none';
+    }
+
+    // On click, close the income modal and store in sessionStorage
+    // in logout.js, the sessionStorage item is removed
+    closeIncomeModalButton.addEventListener('click', function () {
+      incomeModal.style.display = 'none';
+      sessionStorage.setItem('incomeModalClosed', 'true');
+    });
+  }
+
+  if (expenseModal) {
+    // Get close button for the expense modal
+    var closeExpenseModalButton = document.querySelector('#closeExpenseModal');
+
+    // Check if the expense modal has been closed in this session
+    if (sessionStorage.getItem('expenseModalClosed')) {
+      expenseModal.style.display = 'none';
+    }
+
+    // On click, close the expense modal and store in sessionStorage
+    // in logout.js, the sessionStorage item is removed
+    closeExpenseModalButton.addEventListener('click', function () {
+      expenseModal.style.display = 'none';
+      sessionStorage.setItem('expenseModalClosed', 'true');
+    });
+  }
 });
-
-//______________________MODALS____________________
-// Get modals
-// Check if the modals exist before attempting to access them
-if (incomeModal) {
-  // Get close button for the income modal
-  var closeIncomeModalButton = document.querySelector('#closeIncomeModal');
-
-  // Check if the income modal has been closed in this session
-  if (sessionStorage.getItem('incomeModalClosed')) {
-    incomeModal.style.display = 'none';
-  }
-
-  // On click, close the income modal and store in sessionStorage
-  // in logout.js, the sessionStorage item is removed
-  closeIncomeModalButton.addEventListener('click', function () {
-    incomeModal.style.display = 'none';
-    sessionStorage.setItem('incomeModalClosed', 'true');
-  });
-}
-
-if (expenseModal) {
-  // Get close button for the expense modal
-  var closeExpenseModalButton = document.querySelector('#closeExpenseModal');
-
-  // Check if the expense modal has been closed in this session
-  if (sessionStorage.getItem('expenseModalClosed')) {
-    expenseModal.style.display = 'none';
-  }
-
-  // On click, close the expense modal and store in sessionStorage
-  // in logout.js, the sessionStorage item is removed
-  closeExpenseModalButton.addEventListener('click', function () {
-    expenseModal.style.display = 'none';
-    sessionStorage.setItem('expenseModalClosed', 'true');
-  });
-}
 
 //______________________EVENT LISTENER FOR THE INCOME/EXPENSE FILTER FORMs_____________________
 //EVENT LISTENER FOR THE INCOME FILTER FORM
@@ -367,20 +371,6 @@ async function updateExpenseTable() {
   // update the chart with a new expense total
   updateChart();
 }
-
-// TODO - add following functionality
-//______________________EVENT LISTENER FOR THE ADD EXPENSE/INCOME BUTTONS____________________
-document
-  .querySelector('#add-expense-button')
-  .addEventListener('click', function () {
-    // Open a form to input the new expense data
-  });
-
-document
-  .querySelector('#add-income-button')
-  .addEventListener('click', function () {
-    // Open a form to input the new income data
-  });
 
 //______________________CHARTS____________________
 // TODO - expound on this and add more chartts/functionality - move to new JS file
