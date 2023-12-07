@@ -16,7 +16,7 @@ Xinc is a simple, free expense and income transaction-tracker designed for small
 - To filter/sort through these, for example, by payment status to see which have been payed and which haven't (alongside their due date, for example).
 - Modals will alert a user if they have overdue transactions to review (i.e. payment hasn't been recieved/made and the transaction/invoice is past it's due-by date).
 - Dynamic charts that respond to user filter/sorting of transactions.
-- A number of exciting features are also [in development!](#roadmap--known-bugs)
+- A number of exciting features are also [in development!](#roadmap--directions-for-future-dev)
 
 Xinc was built as an "agile" team-effort consisting of a number of open-source technologies in-line with the MVC paradigm.
 
@@ -29,7 +29,7 @@ Xinc was built as an "agile" team-effort consisting of a number of open-source t
 - [Installation](#installation)
 - [Usage](#usage)
 - [Tests](#tests)
-- [Roadmap / Known Bugs](#roadmap--known-bugs)
+- [Roadmap / Future Dev Directions](#roadmap--directions-for-future-dev)
 - [License](#license)
 - [Questions](#questions)
 
@@ -68,6 +68,10 @@ The following is a non-exhaustive list of items we would like to address with mo
 - **Editing/Deleting Data**
 
   - Currently all the APIs exist to handle editing/deleting data (such as incomes/expenses, clients/vendors and types) on the server-side. With more time, we should be able to implement this functionality on the front-end (client-side) quite easily.
+
+- **Invoice Creation and Distribution**
+
+  - Another feature we would like to implement is a function that allows the user to create an invoice directly in-house (in _Xinc_) with integration to send the invoice as a PDF directly to the client, and simultaneously add it to the Income table where it can be tracked!
 
 - **Better and more Charts**
 

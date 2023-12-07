@@ -20,5 +20,27 @@
     "user_id": 1,
     "type_id": 2,
     "vendor_id": 2
+  },
+  {
+    "invoice_id": "EXP003",
+    "amount": 300.0,
+    "issue_date": "2023-03-10",
+    "due_date": "2023-03-25",
+    "payment_status": true,
+    "description": "Renovation of office space",
+    "user_id": 1,
+    "type_id": 3,
+    "vendor_id": 3
+  },
+  {
+    "invoice_id": "EXP004",
+    "amount": 150.0,
+    "issue_date": "2023-04-15",
+    "due_date": "2023-04-30",
+    "payment_status": false,
+    "description": "Marketing materials",
+    "user_id": 1,
+    "type_id": 4,
+    "vendor_id": 4
   }
 ]

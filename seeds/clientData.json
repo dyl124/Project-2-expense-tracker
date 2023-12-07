@@ -1,10 +1,14 @@
 [
   {
-    "client_name": "Client A",
+    "client_name": "TechCorp",
     "user_id": 1
   },
   {
-    "client_name": "Client B",
+    "client_name": "MediCare",
+    "user_id": 1
+  },
+  {
+    "client_name": "RetailHub",
     "user_id": 1
   }
 ]

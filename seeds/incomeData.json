@@ -5,7 +5,7 @@
     "issue_date": "2023-01-01",
     "due_date": "2023-01-15",
     "payment_status": true,
-    "description": "Sold something",
+    "description": "Product Sale",
     "user_id": 1,
     "type_id": 1,
     "client_id": 1
@@ -15,8 +15,8 @@
     "amount": 800.0,
     "issue_date": "2023-02-01",
     "due_date": "2023-02-15",
-    "payment_status": false,
-    "description": "Serviced something",
+    "payment_status": true,
+    "description": "Service Fee for Client",
     "user_id": 1,
     "type_id": 2,
     "client_id": 2
@@ -26,21 +26,32 @@
     "amount": 820.0,
     "issue_date": "2023-03-01",
     "due_date": "2023-03-15",
+    "payment_status": true,
+    "description": "Consulting for Client",
+    "user_id": 1,
+    "type_id": 3,
+    "client_id": 3
+  },
+  {
+    "invoice_id": "INV004",
+    "amount": 900.0,
+    "issue_date": "2023-10-04",
+    "due_date": "2023-11-15",
     "payment_status": false,
-    "description": "Serviced something",
+    "description": "Service Fee for Client",
     "user_id": 1,
     "type_id": 2,
     "client_id": 1
   },
   {
-    "invoice_id": "INV004",
-    "amount": 801.0,
-    "issue_date": "2023-02-04",
-    "due_date": "2023-02-15",
+    "invoice_id": "INV005",
+    "amount": 1500.0,
+    "issue_date": "2023-11-01",
+    "due_date": "2023-12-15",
     "payment_status": false,
-    "description": "Serviced something",
+    "description": "Product Sale to Client",
     "user_id": 1,
-    "type_id": 2,
+    "type_id": 1,
     "client_id": 1
   }
 ]
