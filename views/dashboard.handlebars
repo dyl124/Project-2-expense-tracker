@@ -1,14 +1,31 @@
 <h2>Dashboard</h2>
 {{!-- Need to get the following two lines working --}}
-<p>Welcome, {{user.firstName}}!</p>
-<p id="currentDate"></p>
 
-{{!-- TODO: Add a means to close the modal, add a click-on modal that automatically filters by overdue on the income-table --}}
+
+<p id="currentDate"></p>
+<p>Welcome, {{user.first_name}}!</p>
+<button
+  class='text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
+  type='button'
+  id='logout'
+>LOGOUT</button>
+
 {{#if hasOutstandingIncomes}}
-<div class="modal">
+<div class="modal" id="incomeModal">
   <div class="modal-content">
-    <h3>Outstanding Incomes</h3>
-    <p>You have {{outstandingIncomesCount}} outstanding income payments. Please review them below.</p>
+    {{!-- &times is the multiplaction symbol for use as an X to close --}}
+    <span class="close-button" id="closeIncomeModal">&times;</span>
+    <h3>Overdue Incomes</h3>
+    <p>You have {{outstandingIncomesCount}} overdue income payments. Please review your income transactions below.</p>
+  </div>
+</div>
+{{/if}}
+{{#if hasOutstandingExpenses}}
+<div class="modal" id="expenseModal">
+  <div class="modal-content">
+    <span class="close-button" id="closeExpenseModal">&times;</span>
+    <h3>Overdue Expenses</h3>
+    <p>You have {{outstandingExpensesCount}} overdue expenses. Please review your expense transactions below.</p>
   </div>
 </div>
 {{/if}}
@@ -41,5 +58,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {{!-- Following script is used by both FilterForm and both Table. Ideally in the future, these would be segregrated. The new addTransactionModal will include it's own script. --}}
 <script src="/js/dashboard.js"></script>
+{{!-- Handle logout button --}}
+<script src="/js/logout.js"></script>
 
 
