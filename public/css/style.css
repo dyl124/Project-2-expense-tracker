@@ -76,6 +76,17 @@
     border-bottom: 2px solid skyblue-300;
 }
 
+#incomeModal {
+    background: #ee7676;
+    border: solid black;
+    text-align: center;
+}
+#expenseModal {
+    background: #ee7676;
+    border: solid black;
+    text-align: center;
+}
+
 h1{
     font-size: 6em;
     letter-spacing: 15px;
@@ -87,7 +98,9 @@ h1{
     0 0 160px #03bcf4;
 
 }
-
+h3{
+    font-weight: bold;
+}
 #illuminate {
     color: #fff;
         text-shadow: 0 0 10px #03bcf4,
