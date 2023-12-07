@@ -6,12 +6,12 @@ transactionType.addEventListener('change', function () {
   const toggleincome = document.getElementById('toggleType');
   
   if (transactionType.value === 'income') {
-    console.log('you chose income');
+    console.log('You chose income');
     toggleClient.innerHTML = 'Client Name:';
     toggleincome.innerHTML = 'Income Type:';
 
   } else if (transactionType.value === 'expense') {
-    console.log('you chose expense');
+    console.log('You chose expense');
     toggleClient.innerHTML = 'Vendor Name:';
     toggleincome.innerHTML = 'Expense Type:';
   }
