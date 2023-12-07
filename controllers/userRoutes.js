@@ -38,10 +38,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-///WORKING
-
-////WORKING
-
 router.post('/register', async (req, res) => {
   try {
     const newUser = await User.create({
@@ -56,5 +52,21 @@ router.post('/register', async (req, res) => {
     res.status(400).json(err);
   }
 });
-///WORKINGGG
+
+router.post('/logout', async (req, res) => {
+  try {
+    // IF logged_in is true, destroy the session
+    if (req.session.logged_in) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    console.error(err); // Log the error
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 module.exports = router;

@@ -12,6 +12,12 @@ const withAuth = require('../utils/auth');
 
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
+    // Fetch the user data from API for the user info on dashboard
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+    });
+    const user = userData.get({ plain: true });
+
     // Fetch the all income data from API for table in incomeTable partial
     const incomeData = await Income.findAll({
       where: {
@@ -65,15 +71,16 @@ router.get('/dashboard', withAuth, async (req, res) => {
     // pass the income data, expense data, sumAmounts, and outstanding counts to the dashboard template for rendering the table
     res.render('dashboard', {
       logged_in: req.session.logged_in,
-      incomes,
-      expenses,
-      // pass sumAmounts as 2 decimal-place floats
+      user, // pass user data to dashboard
+      incomes, // pass income data to dashboard for use in incomeTable partial
+      expenses, // pass expense data to dashboard for use in expenseTable partial
+      // pass sumAmounts as 2 decimal-place floats for use in table footers
       incomeSumAmount: incomeSumAmount.toFixed(2),
       expenseSumAmount: expenseSumAmount.toFixed(2),
-      // pass outstanding booleans to dashboard
+      // pass outstanding booleans to dashboard for alert modals
       hasOutstandingIncomes: outstandingIncomesCount > 0,
       hasOutstandingExpenses: outstandingExpensesCount > 0,
-      // pass counts to dashboard
+      // pass counts to dashboard for use in alert modals
       outstandingIncomesCount,
       outstandingExpensesCount,
     });
