@@ -114,31 +114,40 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 //______________________MODALS____________________
 // Get modals
-var incomeModal = document.querySelector('#incomeModal');
-var expenseModal = document.querySelector('#expenseModal');
+// Check if the modals exist before attempting to access them
+if (incomeModal) {
+  // Get close button for the income modal
+  var closeIncomeModalButton = document.querySelector('#closeIncomeModal');
 
-// Get close buttons
-var closeIncomeModalButton = document.querySelector('#closeIncomeModal');
-var closeExpenseModalButton = document.querySelector('#closeExpenseModal');
+  // Check if the income modal has been closed in this session
+  if (sessionStorage.getItem('incomeModalClosed')) {
+    incomeModal.style.display = 'none';
+  }
 
-// Check if the modals have been closed in this session
-if (sessionStorage.getItem('incomeModalClosed')) {
-  incomeModal.style.display = 'none';
+  // On click, close the income modal and store in sessionStorage
+  // in logout.js, the sessionStorage item is removed
+  closeIncomeModalButton.addEventListener('click', function () {
+    incomeModal.style.display = 'none';
+    sessionStorage.setItem('incomeModalClosed', 'true');
+  });
 }
-if (sessionStorage.getItem('expenseModalClosed')) {
-  expenseModal.style.display = 'none';
-}
 
-// On click, close modals and store in sessionStorage
-// in logout.js, the sessionStorage items are removed
-closeIncomeModalButton.addEventListener('click', function () {
-  incomeModal.style.display = 'none';
-  sessionStorage.setItem('incomeModalClosed', 'true');
-});
-closeExpenseModalButton.addEventListener('click', function () {
-  expenseModal.style.display = 'none';
-  sessionStorage.setItem('expenseModalClosed', 'true');
-});
+if (expenseModal) {
+  // Get close button for the expense modal
+  var closeExpenseModalButton = document.querySelector('#closeExpenseModal');
+
+  // Check if the expense modal has been closed in this session
+  if (sessionStorage.getItem('expenseModalClosed')) {
+    expenseModal.style.display = 'none';
+  }
+
+  // On click, close the expense modal and store in sessionStorage
+  // in logout.js, the sessionStorage item is removed
+  closeExpenseModalButton.addEventListener('click', function () {
+    expenseModal.style.display = 'none';
+    sessionStorage.setItem('expenseModalClosed', 'true');
+  });
+}
 
 //______________________EVENT LISTENER FOR THE INCOME/EXPENSE FILTER FORMs_____________________
 //EVENT LISTENER FOR THE INCOME FILTER FORM
