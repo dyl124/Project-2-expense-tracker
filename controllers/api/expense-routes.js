@@ -81,13 +81,13 @@ router.post('/addexpense', withAuth, async (req, res) => {
     // Add the user_id to the request body
     req.body.user_id = userId;
 
-    // Create a new income record
+    // Create a new expense record
     const newExpense = await Expense.create(req.body);
 
     // Send a success-created response
     res.status(201).json(newExpense);
   } catch (err) {
-    console.error('Error creating new income entry:', err);
+    console.error('Error creating new expense entry:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
