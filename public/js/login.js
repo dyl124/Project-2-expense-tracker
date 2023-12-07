@@ -14,12 +14,10 @@ const loginFormHandler = async (event) => {
 
       if (response.ok) {
         document.location.replace('/');
-        console.log('successful');
       } else {
         alert('Failed to log in');
       }
     } catch (error) {
-      console.error('Error during login:', error);
       alert('An error occurred during login');
     }
   }

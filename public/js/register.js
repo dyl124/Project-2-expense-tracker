@@ -12,11 +12,6 @@ const registerFormHandler = async (event) => {
       alert('Passwords do not match');
       return;
     }
-console.log(firstName);
-console.log(lastName);
-console.log(email);
-console.log(password);
-console.log(confirmPassword);
 
 try {
   const response = await fetch('/user/register', {
@@ -31,7 +26,6 @@ try {
 
       if (response.ok) {
         document.location.replace('/dashboard'); // Redirect to login page after successful register
-        console.log('user created');
         alert('user created successfully');
       } else {
         const data = await response.json();

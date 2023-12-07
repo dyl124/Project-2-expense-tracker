@@ -6,12 +6,10 @@ transactionType.addEventListener('change', function () {
   const toggleincome = document.getElementById('toggleType');
   
   if (transactionType.value === 'income') {
-    console.log('You chose income');
     toggleClient.innerHTML = 'Client Name:';
     toggleincome.innerHTML = 'Income Type:';
 
   } else if (transactionType.value === 'expense') {
-    console.log('You chose expense');
     toggleClient.innerHTML = 'Vendor Name:';
     toggleincome.innerHTML = 'Expense Type:';
   }
@@ -25,7 +23,6 @@ transactionForm.addEventListener('submit', async function (event) {
 
   if (selectedTransactionType === 'income') {
     try {
-      console.log('you have chosen income');
       // Get values from input fields
       const incomeIncomeNameInput = document.getElementById('incomeName');
       const incomeClientNameInput = document.getElementById('incomeClientName');
@@ -58,7 +55,6 @@ transactionForm.addEventListener('submit', async function (event) {
 
       // Convert FormData to object
       const formDataObject = Object.fromEntries(formData);
-      console.log(formDataObject);
 
       // Send data as JSON for api/income/type route
       const responseIncomeType = await fetch("/api/income/type", {
@@ -95,7 +91,6 @@ transactionForm.addEventListener('submit', async function (event) {
 
       const clientData = await responseClient.json();
       const clientId = clientData.id;
-      console.log(clientId);
 
       // Send data as JSON for api/income/income route
       const responseType = await fetch("/api/income/addincome", {
@@ -124,7 +119,6 @@ transactionForm.addEventListener('submit', async function (event) {
       }
 
       if (responseType.ok){
-        console.log("New income received.");
        alert('New income received.');
        window.location.reload();
      }
@@ -140,7 +134,6 @@ transactionForm.addEventListener('submit', async function (event) {
 
       event.preventDefault();
 
-      console.log('You have chosen expense');
 
       // Get values from input fields
       const incomeIncomeNameInput = document.getElementById('incomeName');
@@ -174,7 +167,6 @@ transactionForm.addEventListener('submit', async function (event) {
 
       // Convert FormData to object
       const formDataObject = Object.fromEntries(formData);
-      console.log(formDataObject);
 
       // Send data as JSON for api/income/type route
       const responseIncomeType = await fetch("/api/expense/type", {
@@ -211,7 +203,6 @@ transactionForm.addEventListener('submit', async function (event) {
 
       const clientData = await responseClient.json();
       const clientId = clientData.id;
-      console.log(clientId);
 
       // Send data as JSON for api/income/income route
       const responseType = await fetch("/api/expense/addexpense", {
@@ -238,7 +229,6 @@ transactionForm.addEventListener('submit', async function (event) {
         throw new Error(`HTTP error! Status: ${responseType.status}`);
       }
     if (responseType.ok){
-       console.log("New expense received.");
       alert('New expense received.');
       window.location.reload();
     }

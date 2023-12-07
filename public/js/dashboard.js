@@ -190,7 +190,6 @@ async function updateIncomeTable() {
 
   // Construct the URL with the parameters
   const paramString = new URLSearchParams(params).toString();
-  console.log(paramString);
 
   // Fetch the filtered data from the API
   const response = await fetch(`/api/income?${paramString}`, {
@@ -199,7 +198,6 @@ async function updateIncomeTable() {
   });
 
   const data = await response.json();
-  console.log(data);
 
   // Get the table body
   const tbody = document.querySelector('#incomeTable tbody');
@@ -292,7 +290,6 @@ async function updateExpenseTable() {
 
   // Construct the URL with the parameters
   const paramString = new URLSearchParams(params).toString();
-  console.log(paramString);
 
   // Fetch the filtered data from the API
   const response = await fetch(`/api/expense?${paramString}`, {
@@ -300,7 +297,6 @@ async function updateExpenseTable() {
   });
 
   const data = await response.json();
-  console.log(data);
 
   // Get the table body
   const tbody = document.querySelector('#expenseTable tbody');
