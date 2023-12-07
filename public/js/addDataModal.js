@@ -3,13 +3,17 @@ const transactionType = document.getElementById('transactionType');
 
 transactionType.addEventListener('change', function () {
   const toggleClient = document.getElementById('nameReq');
+  const toggleincome = document.getElementById('incomeName');
   
   if (transactionType.value === 'income') {
     console.log('you chose income');
     toggleClient.innerHTML = 'Client Name:';
+    toggleincome.innerHTML = 'Income Type:';
+
   } else if (transactionType.value === 'expense') {
     console.log('you chose expense');
     toggleClient.innerHTML = 'Vendor Name:';
+    toggleincome.innerHTML = 'Expense Type:';
   }
 });
 
