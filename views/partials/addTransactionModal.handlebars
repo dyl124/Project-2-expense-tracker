@@ -1,37 +1,62 @@
 <div id='addTransactionModal' class='modal'>
   <div>
-    <h2>Add Transaction</h2>
+   
     <form id='addTransactionForm'>
       <label for='transactionType'>Transaction Type:</label>
       <select id='transactionType' name='transaction_type'>
-        {{!-- Depending on which is selected the corresponding form will be shown --}}
+        <!-- Depending on which is selected, the corresponding form will be shown -->
         <option value='income'>Income</option>
         <option value='expense'>Expense</option>
       </select>
 
       <div id='incomeFields'>
-        <!-- Income fields go here -->
-        {{! eg: }}
-        <label for='addIncomeClientSelect'>Client:</label>
-        <select id='addIncomeClientSelect' name='client'>
-          <!-- Existing clients will be added here dynamically -->
-          <option value='add_new'>Add New Client</option>
+        <label value="invoice_number" for="incomeInvoiceNumber">Invoice Number:</label>
+        <input type="text" id="incomeInvoiceNumber" name="invoice_number" required>
+
+        <label value="amount" for="incomeAmount">Amount:</label>
+        <input type="text" id="incomeAmount" name="amount" required>
+
+        <label value="issue_date" for="incomeIssueDate">Issue Date:</label>
+        <input type="date" id="incomeIssueDate" name="issue_date" required>
+
+        <label value="due_date" for="incomeDueDate">Due Date:</label>
+        <input type="date" id="incomeDueDate" name="due_date" required>
+
+        <label value="payment_status" for="incomePaymentStatus">Has this been paid?</label>
+        <select id="incomePaymentStatus" name="payment_status">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
         </select>
 
-    <!-- Add Client Form that only appears if  add_new is selected from the addIncomeClientSelect -->
-    <div id='addClientForm' style='display: none;'>
-        <h3>Add New Client</h3>
-        <label for='newClientName'>Client Name:</label>
-        <input type='text' id='newClientName' name='new_client_name' required>
-        <button type='button' id='addClientButton'>Add Client</button>
-    </div>
-    </div>
+        <label value="description" for="incomeDescription">Description:</label>
+        <input type="text" id="incomeDescription" name="description" required>
 
+        <label value="income_name" for="incomeName">Income Type:</label>
+        <input type="text" id="incomeName" name="income_name" required>
 
+        <label value="client_name" id="nameReq" for="incomeClientName">Client name:</label>
+        <input type="text" id="incomeClientName" name="client_name" required>
+
+        <!-- Add Client Form that only appears if add_new is selected from the addIncomeClientSelect 
+        <div id='addClientForm' style='display: none;'>
+          <h3>Add New Client</h3>
+          <label for='newClientName'>Client Name:</label>
+          <input type='text' id='newClientName' name='new_client_name' required>
+          <button type='button' id='addClientButton'>Add Client</button>
+        </div>
       </div>
 
       <div id='expenseFields' style='display: none;'>
         <!-- Expense fields go here -->
+       
+
+        <!-- Add Vendor Form that only appears if add_new is selected from the addExpenseVendorSelect 
+        <div id='addVendorForm' style='display: none;'>
+          <h3>Add New Vendor</h3>
+          <label for='newVendorName'>Vendor Name:</label>
+          <input type='text' id='newVendorName' name='new_vendor_name' required>
+          <button type='button' id='addVendorButton'>Add Vendor</button>
+        </div> -->
       </div>
 
       <button type='submit'>Add Transaction</button>
@@ -39,4 +64,5 @@
   </div>
 </div>
 
-<script src='/js/addDataModal'></script>
+<script src="/js/addDataModal.js"></script>
+    

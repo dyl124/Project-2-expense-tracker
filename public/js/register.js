@@ -1,29 +1,38 @@
 const registerFormHandler = async (event) => {
   event.preventDefault();
 
-  const firstName = document.querySelector('#firstName').value.trim();
-  const lastName = document.querySelector('#lastName').value.trim();
-  const email = document.querySelector('#email').value.trim();
-  const password = document.querySelector('#password').value.trim();
-  const confirmPassword = document
-    .querySelector('#confirmPassword')
-    .value.trim();
+  const firstName = document.querySelector('#registerFirstName').value.trim();
+  const lastName = document.querySelector('#registerLastName').value.trim();
+  const email = document.querySelector('#registerEmail').value.trim();
+  const password = document.querySelector('#registerPassword').value.trim();
+  const confirmPassword = document.querySelector('#registerConfirmPassword').value.trim();
 
   if (firstName && lastName && email && password && confirmPassword) {
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
     }
+console.log(firstName);
+console.log(lastName);
+console.log(email);
+console.log(password);
+console.log(confirmPassword);
 
-    try {
-      const response = await fetch('/user/register', {
-        method: 'POST',
-        body: JSON.stringify({ firstName, lastName, email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
+try {
+  const response = await fetch('/user/register', {
+    method: 'POST',
+    body: JSON.stringify({firstName, lastName, email, password, confirmPassword}),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  
+     
 
       if (response.ok) {
-        document.location.replace('/login'); // Redirect to login page after successful register
+        document.location.replace('/dashboard'); // Redirect to login page after successful register
+        console.log('user created');
+        alert('user created successfully');
       } else {
         const data = await response.json();
         alert(data.message || 'Failed to sign up');
@@ -38,3 +47,5 @@ const registerFormHandler = async (event) => {
 document
   .querySelector('#register-form')
   .addEventListener('submit', registerFormHandler);
+
+
