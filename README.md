@@ -42,12 +42,23 @@ No installation is necessary, simply head to the deployed web-app [here](ADD/HER
 To use Xinc as your new income and expense tracker:
 
 1. Register for an account by clicking on the sign up button on the homepage.
+   <img width="1681" alt="Screenshot 2023-12-07 at 8 36 41 pm" src="https://github.com/dyl124/Project-2-expense-tracker/assets/138781674/a55fc085-5f97-4321-ac24-393cee3fc28e">
+
 2. Once registered, you will need to log in with your new account details.
+   <img width="1690" alt="Screenshot 2023-12-07 at 8 36 55 pm" src="https://github.com/dyl124/Project-2-expense-tracker/assets/138781674/b376f666-ba43-4106-a45b-effd85a6377f">
+
 3. Once logged in, you will be taken to the dashboard:  
-   3.1. If you have logged in previously and already have income and expense data tied to your account, you will be met with modals at the top of your dashboard alerting you to any overdue income/expense payments. You can snooze these until your next log-in by clicking the **X** button.  
-   3.2. Use the filter element to sort and filter your transactions, to give you the oversight you want. This will also dynamically update the chart with new amounts.  
+   3.1. If you have logged in previously and already have income and expense data tied to your account, you will be met with modals at the top of your dashboard alerting you to any overdue income/expense payments. You can snooze these until your next log-in by clicking the **X** button.
+   <img width="1709" alt="Screenshot 2023-12-07 at 8 54 48 pm" src="https://github.com/dyl124/Project-2-expense-tracker/assets/138781674/7a4b8dcd-fe02-4951-ada5-ba9b95568689">
+
+   3.2. Use the filter element to sort and filter your transactions, to give you the oversight you want. This will also dynamically update the chart with new amounts.<img width="837" alt="Screenshot 2023-12-07 at 8 55 08 pm" src="https://github.com/dyl124/Project-2-expense-tracker/assets/138781674/ed245d11-aa5d-4636-af4b-9f50bfc60643">
+
+   
    3.3. Click Add Transaction to add a new expense or income transaction.
+   <img width="1688" alt="Screenshot 2023-12-07 at 9 01 45 pm" src="https://github.com/dyl124/Project-2-expense-tracker/assets/138781674/aecdf489-358a-416b-93f8-4aabe4df2a9c">
+
 4. Once you have reviewed your transactions and/or added any new data, remember to end your session by logging out using the log out button!
+<img width="1709" alt="Screenshot 2023-12-07 at 9 02 17 pm" src="https://github.com/dyl124/Project-2-expense-tracker/assets/138781674/377f7de2-3474-481d-9979-519f93282300">
 
 ## Tests
 
