@@ -116,6 +116,7 @@ router.post('/addincome', withAuth, async (req, res) => {
   }
 });
 
+
 // Still need to work out how we want to implement this on the front end.
 router.put('/:id', withAuth, async (req, res) => {
   try {
@@ -212,16 +213,22 @@ router.post('/type', withAuth, async (req, res) => {
     // Add the user_id to the request body
     req.body.user_id = userId;
 
-    // Create a new income type record
-    const newIncomeType = await IncomeType.create(req.body);
+    // Find or create the income type record based on income_name
+    const [existingIncomeType, created] = await IncomeType.findOrCreate({
+      where: { income_name: req.body.income_name },
+      defaults: req.body  // This is the data to use if the record doesn't exist
+    });
+
+    // If the record already existed, you can access its data using existingIncomeType
 
     // Send a success-created response
-    res.status(201).json(newIncomeType);
+    res.status(201).json(existingIncomeType);
   } catch (err) {
-    console.error('Error creating new income type:', err);
+    console.error('Error creating/updating income type:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 // PUT route to update an income type
 router.put('/type/:id', withAuth, async (req, res) => {
@@ -301,16 +308,22 @@ router.post('/client', withAuth, async (req, res) => {
     // Add the user_id to the request body
     req.body.user_id = userId;
 
-    // Create a new client record
-    const newClient = await Client.create(req.body);
+    // Find or create the client record based on a certain condition (e.g., client_name)
+    const [existingClient, created] = await Client.findOrCreate({
+      where: { client_name: req.body.client_name },
+      defaults: req.body  // This is the data to use if the record doesn't exist
+    });
+
+    // If the record already existed, you can access its data using existingClient
 
     // Send a success-created response
-    res.status(201).json(newClient);
+    res.status(201).json(existingClient);
   } catch (err) {
-    console.error('Error creating new client:', err);
+    console.error('Error creating/updating client:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 router.put('/client/:id', withAuth, async (req, res) => {
   try {

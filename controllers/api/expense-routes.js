@@ -73,18 +73,25 @@ router.get('/', withAuth, async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 router.post('/addexpense', withAuth, async (req, res) => {
   try {
+    // Use req.session.user_id to get the currently logged-in user's ID
     const userId = req.session.user_id;
+
+    // Add the user_id to the request body
     req.body.user_id = userId;
+
+    // Create a new income record
     const newExpense = await Expense.create(req.body);
+
+    // Send a success-created response
     res.status(201).json(newExpense);
   } catch (err) {
-    console.error('Error creating new expense entry:', err);
+    console.error('Error creating new income entry:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
@@ -154,15 +161,28 @@ router.get('/type', withAuth, async (req, res) => {
 
 router.post('/type', withAuth, async (req, res) => {
   try {
+    // Use req.session.user_id to get the currently logged-in user's ID
     const userId = req.session.user_id;
+
+    // Add the user_id to the request body
     req.body.user_id = userId;
-    const newExpenseType = await ExpenseType.create(req.body);
-    res.status(201).json(newExpenseType);
+
+    // Find or create the expense type record based on expense_name
+    const [existingExpenseType, created] = await ExpenseType.findOrCreate({
+      where: { expense_name: req.body.expense_name },
+      defaults: req.body  // This is the data to use if the record doesn't exist
+    });
+
+    // If the record already existed, you can access its data using existingExpenseType
+
+    // Send a success-created response
+    res.status(201).json(existingExpenseType);
   } catch (err) {
-    console.error('Error creating new expense type:', err);
+    console.error('Error creating/updating expense type:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 router.put('/type/:id', withAuth, async (req, res) => {
   try {
@@ -228,15 +248,28 @@ router.get('/vendor', withAuth, async (req, res) => {
 
 router.post('/vendor', withAuth, async (req, res) => {
   try {
+    // Use req.session.user_id to get the currently logged-in user's ID
     const userId = req.session.user_id;
+
+    // Add the user_id to the request body
     req.body.user_id = userId;
-    const newVendor = await Vendor.create(req.body);
-    res.status(201).json(newVendor);
+
+    // Find or create the vendor record based on a certain condition (e.g., vendor_name)
+    const [existingVendor, created] = await Vendor.findOrCreate({
+      where: { vendor_name: req.body.vendor_name },
+      defaults: req.body  // This is the data to use if the record doesn't exist
+    });
+
+    // If the record already existed, you can access its data using existingvendor
+
+    // Send a success-created response
+    res.status(201).json(existingVendor);
   } catch (err) {
-    console.error('Error creating new vendor:', err);
+    console.error('Error creating/updating vendor:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 router.put('/vendor/:id', withAuth, async (req, res) => {
   try {
