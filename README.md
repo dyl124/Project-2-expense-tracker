@@ -1,12 +1,12 @@
 # Xinc
 
-> e  
-> `Xinc`ome  
-> p  
-> e  
-> n  
-> s  
-> e
+e  
+**Xinc** o m e  
+p  
+e  
+n  
+s  
+e
 
 ## Description
 
@@ -14,11 +14,11 @@ Xinc is a simple, free expense and income transaction-tracker designed for small
 
 - Allowing users to enter and save income/expense transactions to their account.
 - To filter/sort through these, for example, by payment status to see which have been payed and which haven't (alongside their due date, for example).
-- Modals will alert a user if they have overdue transactions to review (i.e. payment hasn't been recieved/made and the transaction/invoice is passed it's due-by date).
+- Modals will alert a user if they have overdue transactions to review (i.e. payment hasn't been recieved/made and the transaction/invoice is past it's due-by date).
 - Dynamic charts that respond to user filter/sorting of transactions.
 - A number of exciting features are also [in development!](#roadmap--known-bugs)
 
-Xinc was built as a team-effort consisting of a number of open-source technologies in-line with the MVC paradigm.
+Xinc was built as an "agile" team-effort consisting of a number of open-source technologies in-line with the MVC paradigm.
 
 - These include the [`Node.js`](https://nodejs.org/en) runtime environment, [`MySQL2`](https://www.npmjs.com/package/mysql2/) and [`Sequelize`](https://www.npmjs.com/package/sequelize/) for connecting and communicating with the `MySQL` database (db), [`Express`](https://www.npmjs.com/package/express/) for the web framework/server-functionality and [`Handlebars`](https://www.npmjs.com/package/handlebars/)
 - It includes additional dependencies for handling sessions and hashing passwords, as well as some dev-dependencies for linting, code formatting and monitoring/watching servers; for a full list, see [`package.json`](./package.json) in the repo.
@@ -35,20 +35,25 @@ Xinc was built as a team-effort consisting of a number of open-source technologi
 
 ## Installation
 
-No installation is necessary, simple head to the deployed web-app [here](ADD/HEROKU/LINK)
+No installation is necessary, simply head to the deployed web-app [here](ADD/HEROKU/LINK)
 
 ## Usage
 
 To use Xinc as your new income and expense tracker:
 
-1. Step 1
-2. Step 2
+1. Register for an account by clicking on the sign up button on the homepage.
+2. Once registered, you will need to log in with your new account details.
+3. Once logged in, you will be taken to the dashboard:  
+   3.1. If you have logged in previously and already have income and expense data tied to your account, you will be met with modals at the top of your dashboard alerting you to any overdue income/expense payments. You can snooze these until your next log-in by clicking the **X** button.  
+   3.2. Use the filter element to sort and filter your transactions, to give you the oversight you want. This will also dynamically update the chart with new amounts.  
+   3.3. Click Add Transaction to add a new expense or income transaction.
+4. Once you have reviewed your transactions and/or added any new data, remember to end your session by logging out using the log out button!
 
 ## Tests
 
 No tests have been written for this application at this time.
 
-## Roadmap / Known Bugs
+## Roadmap / Directions for Future Dev
 
 The following is a non-exhaustive list of items we would like to address with more development time in the future:
 
@@ -60,38 +65,32 @@ The following is a non-exhaustive list of items we would like to address with mo
   - Default sorting should be by `issue_date` and not `invoice_id`.
   - The server-side capabilities exist to be able to sort by date range, but this has not yet been incorporated on the client-side.
 
-### Directions for future development
+- **Editing/Deleting Data**
+
+  - Currently all the APIs exist to handle editing/deleting data (such as incomes/expenses, clients/vendors and types) on the server-side. With more time, we should be able to implement this functionality on the front-end (client-side) quite easily.
+
+- **Better and more Charts**
+
+  - The current chart in _Xinc_ dynamically updates according to the filter/sort options selected by the user. However, the current chart is more akin to proof of concept and only shows the total amounts for income and expense.
+  - With more development time we will add a larger variety of options for the user to dynamically configure charts to show any analytical data they want.
+
 - **2FA**
 
-  - As Xinc will include the user's senstive financial data, impleneting 2 factor authentication would ensure a more secure experience.
+  - As Xinc will include the user's sensitive financial data, implementing 2 factor authentication would ensure a more secure experience.
 
 - **Google API to scan text**
 
-  - If this is successfully implemented users will be able to input their incomes and expenses by uploading documnets which can make Xinc more efficient.
-
-- **Editing/Deleting Data**
-  - Currently all the APIs exist to handle editing/deleting data (such as incomes/expenses, clients/vendors and types) on the server-side. With more time, we should be able to implement this functionality on the front-end (client-side) quite easily.
+  - Enable a feature that includes image recognition to enable users to input their incomes and expenses by uploading documents, which can make Xinc more efficient.
 
 - **PDF Generation**
-  - Can implement technology that generates the user's end of year financial report in the form of a PDF. This will users to be able to keep track of their expenses in a more organised manner
-
-### UI
-
-- **Income/Expense Tables**
-  - I forgot...
+  - Implement technology that generates the user's end of year financial report in the form of a PDF. This will users to be able to keep track of their expenses in a more organised manner, and allow easier transfer of data to 3rd parties such as a user's accountant.
 
 ### Code
 
 - A large part of the build process saw functionalities be copied between income and expense. For this reason, the code would benefit from a refactoring of these common functionalities to improve maintainability and reduce redundancy.
-- Additionally, while all the UI components on the Dashboard are handled/implemented as seperate partials, the logic is predominantly handles by a single JS file; maintainability would also be largely improved by the seperation and modularisation of that script.
+- Additionally, while all the UI components on the Dashboard are handled/implemented as seperate partials, the logic is predominantly handles by a single JS file; maintainability would also be largely improved by the separation and modularisation of that script.
 
 ## License
 
-{License info}
-
 - This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit).
 - Please refer to the [license](./LICENSE) section in the repo for further information.
-
-## Questions
-
-{Where to address questions}
