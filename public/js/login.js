@@ -1,9 +1,8 @@
-console.log('Hello');
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
-  const email = document.querySelector('#email').value.trim();
-  const password = document.querySelector('#password').value.trim();
+  const email = document.querySelector('#loginEmail').value.trim();
+  const password = document.querySelector('#loginPassword').value.trim();
 
   if (email && password) {
     try {
