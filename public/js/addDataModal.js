@@ -16,7 +16,7 @@ transactionType.addEventListener('change', function () {
     toggleincome.innerHTML = 'Expense Type:';
   }
 });
-
+console.log('hello');
 // Event listener for add transaction form to make appropriate fetch requests
 const transactionForm = document.getElementById('addTransactionForm');
 transactionForm.addEventListener('submit', async function (event) {
