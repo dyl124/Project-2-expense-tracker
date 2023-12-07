@@ -112,6 +112,34 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 });
 
+//______________________MODALS____________________
+// Get modals
+var incomeModal = document.querySelector('#incomeModal');
+var expenseModal = document.querySelector('#expenseModal');
+
+// Get close buttons
+var closeIncomeModalButton = document.querySelector('#closeIncomeModal');
+var closeExpenseModalButton = document.querySelector('#closeExpenseModal');
+
+// Check if the modals have been closed in this session
+if (sessionStorage.getItem('incomeModalClosed')) {
+  incomeModal.style.display = 'none';
+}
+if (sessionStorage.getItem('expenseModalClosed')) {
+  expenseModal.style.display = 'none';
+}
+
+// On click, close modals and store in sessionStorage
+// in logout.js, the sessionStorage items are removed
+closeIncomeModalButton.addEventListener('click', function () {
+  incomeModal.style.display = 'none';
+  sessionStorage.setItem('incomeModalClosed', 'true');
+});
+closeExpenseModalButton.addEventListener('click', function () {
+  expenseModal.style.display = 'none';
+  sessionStorage.setItem('expenseModalClosed', 'true');
+});
+
 //______________________EVENT LISTENER FOR THE INCOME/EXPENSE FILTER FORMs_____________________
 //EVENT LISTENER FOR THE INCOME FILTER FORM
 document
@@ -360,31 +388,3 @@ function updateChart() {
   // Update the chart
   chart.update();
 }
-
-//______________________MODALS____________________
-// Get modals
-var incomeModal = document.querySelector('#incomeModal');
-var expenseModal = document.querySelector('#expenseModal');
-
-// Get close buttons
-var closeIncomeModalButton = document.querySelector('#closeIncomeModal');
-var closeExpenseModalButton = document.querySelector('#closeExpenseModal');
-
-// Check if the modals have been closed in this session
-if (sessionStorage.getItem('incomeModalClosed')) {
-  incomeModal.style.display = 'none';
-}
-if (sessionStorage.getItem('expenseModalClosed')) {
-  expenseModal.style.display = 'none';
-}
-
-// On click, close modals and store in sessionStorage
-// in logout.js, the sessionStorage items are removed upon logout
-closeIncomeModalButton.addEventListener('click', function () {
-  incomeModal.style.display = 'none';
-  sessionStorage.setItem('incomeModalClosed', 'true');
-});
-closeExpenseModalButton.addEventListener('click', function () {
-  expenseModal.style.display = 'none';
-  sessionStorage.setItem('expenseModalClosed', 'true');
-});
