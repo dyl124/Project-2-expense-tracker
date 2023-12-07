@@ -6,5 +6,13 @@
   {
     "expense_name": "Software Subscriptions",
     "user_id": 1
+  },
+  {
+    "expense_name": "Office Renovation",
+    "user_id": 1
+  },
+  {
+    "expense_name": "Marketing Expenses",
+    "user_id": 1
   }
 ]

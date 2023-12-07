@@ -1,10 +1,18 @@
 [
-    {
-      "vendor_name": "Vendor X",
-      "user_id": 1
-    },
-    {
-      "vendor_name": "Vendor Y",
-      "user_id": 1
-    }
-  ]
+  {
+    "vendor_name": "OfficeMart",
+    "user_id": 1
+  },
+  {
+    "vendor_name": "TechSolutions",
+    "user_id": 1
+  },
+  {
+    "vendor_name": "ConstructionCo",
+    "user_id": 1
+  },
+  {
+    "vendor_name": "PrintHouse",
+    "user_id": 1
+  }
+]
