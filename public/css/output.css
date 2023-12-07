@@ -10,6 +10,82 @@
   display: inherit;
 }
 
+#incomeTable{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 1.05em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#incomeTable thead tr{
+  background-color: skyblue-300;
+  color: black;
+  text-align: left;
+  font-weight: bold;
+}
+
+#incomeTable th {
+  padding: 12px 15px;
+}
+
+#incomeTable td {
+  padding: 12px 15px;
+}
+
+#incomeTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: #fff;
+}
+
+#incomeTable tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+#incomeTable tbody tr:last-of-type {
+  border-bottom: 2px solid skyblue-300;
+}
+
+#expenseTable{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 1.05em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#expenseTable thead tr{
+  background-color: skyblue-300;
+  color: black;
+  text-align: left;
+  font-weight: bold;
+}
+
+#expenseTable th {
+  padding: 12px 15px;
+}
+
+#expenseTable td {
+  padding: 12px 15px;
+}
+
+#expenseTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: #fff;
+}
+
+#expenseTable tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+#expenseTable tbody tr:last-of-type {
+  border-bottom: 2px solid skyblue-300;
+}
+
 h1{
   font-size: 6em;
   letter-spacing: 15px;
@@ -583,6 +659,14 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.sticky {
+  position: sticky;
+}
+
+.top-0 {
+  top: 0px;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -611,8 +695,16 @@ video {
   height: 100vh;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .grid-flow-row-dense {
   grid-auto-flow: row dense;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grid-cols-3 {
@@ -623,12 +715,20 @@ video {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .items-center {
   align-items: center;
 }
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .gap-x-2 {
@@ -642,6 +742,11 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.bg-\[\#FBFBFB\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 251 251 / var(--tw-bg-opacity));
 }
 
 .bg-sky-300 {
@@ -672,6 +777,11 @@ video {
   padding: 0.5rem;
 }
 
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -687,6 +797,10 @@ video {
   padding-bottom: 0.625rem;
 }
 
+.pt-40 {
+  padding-top: 10rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -696,8 +810,23 @@ video {
   line-height: 1.25rem;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .font-medium {
   font-weight: 500;
+}
+
+.text-neutral-500 {
+  --tw-text-opacity: 1;
+  color: rgb(115 115 115 / var(--tw-text-opacity));
+}
+
+.text-neutral-800 {
+  --tw-text-opacity: 1;
+  color: rgb(38 38 38 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -726,6 +855,16 @@ video {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
 
+.hover\:text-neutral-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(64 64 64 / var(--tw-text-opacity));
+}
+
+.focus\:text-neutral-700:focus {
+  --tw-text-opacity: 1;
+  color: rgb(64 64 64 / var(--tw-text-opacity));
+}
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -743,6 +882,16 @@ video {
 }
 
 @media (prefers-color-scheme: dark) {
+  .dark\:bg-neutral-600 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(82 82 82 / var(--tw-bg-opacity));
+  }
+
+  .dark\:text-neutral-200 {
+    --tw-text-opacity: 1;
+    color: rgb(229 229 229 / var(--tw-text-opacity));
+  }
+
   .dark\:shadow-lg {
     --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -757,5 +906,12 @@ video {
   .dark\:focus\:ring-teal-800:focus {
     --tw-ring-opacity: 1;
     --tw-ring-color: rgb(17 94 89 / var(--tw-ring-opacity));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }

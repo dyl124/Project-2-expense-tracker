@@ -10,6 +10,72 @@
     display: inherit;
 }
 
+#incomeTable{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.05em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+#incomeTable thead tr{
+    background-color: skyblue-300;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+    
+}
+#incomeTable th {
+    padding: 12px 15px;
+}
+#incomeTable td {
+    padding: 12px 15px;
+}
+#incomeTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #fff;
+}
+#incomeTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+#incomeTable tbody tr:last-of-type {
+    border-bottom: 2px solid skyblue-300;
+}
+
+#expenseTable{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.05em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+#expenseTable thead tr{
+    background-color: skyblue-300;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+    
+}
+#expenseTable th {
+    padding: 12px 15px;
+}
+#expenseTable td {
+    padding: 12px 15px;
+}
+#expenseTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #fff;
+}
+#expenseTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+#expenseTable tbody tr:last-of-type {
+    border-bottom: 2px solid skyblue-300;
+}
+
 h1{
     font-size: 6em;
     letter-spacing: 15px;
