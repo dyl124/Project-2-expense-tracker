@@ -4,7 +4,11 @@
     "user_id": 1
   },
   {
-    "income_name": "Service Fee",
+    "income_name": "Service Fees",
+    "user_id": 1
+  },
+  {
+    "income_name": "Consulting Revenue",
     "user_id": 1
   }
 ]
